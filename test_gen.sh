@@ -1,1 +1,1 @@
-py -m pytest --cov=game_of_life --cov-report html test_*.py
+python -m pytest --cov=Propagation_Cancer --cov-report html test_*.py
