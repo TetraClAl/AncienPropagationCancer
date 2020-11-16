@@ -1,0 +1,1 @@
+python -m pytest --cov=Propagation_Cancer --cov-report html Propagation_Cancer/test_*.py
