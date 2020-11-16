@@ -10,11 +10,11 @@ def set_cell(coord, value):
 
 
 def get_cellC(x, y):
-    """ Retourne l'état de la cellule x, y en repère carthésien. """
+    """ Retourne l'état de la cellule x, y en repère cartésien. """
 
 
 def set_cellC(x, y, value):
-    """ Modifie l'état de la cellule x, y en repère carthésien. """
+    """ Modifie l'état de la cellule x, y en repère cartésien. """
 
 
 def get_groupe(coord):
