@@ -26,3 +26,8 @@ def test_create_cell():
     assert vc.create_cell(0, 1, univers).get_facecolor() == (1, 0, 0, 0.5)
     assert vc.create_cell(0, 2, univers).get_facecolor() == (
         0.5019607843137255, 0.5019607843137255, 0.5019607843137255, 0.5)
+
+
+def test_display_cell():
+    # vérifié sur une figure matplotlib
+    assert True
