@@ -16,6 +16,24 @@ def test_s_get_adj():
     L2 = s_get_adj(0, 1, uni)
 
     # Listes de comparaison
-    # L1c =
+    L1c = [[0, 0], [1, 0], [1, 1], [1, 2], [0, 2]]
+    L2c = [[0, 0], [0, 1], [1, 1], [2, 0]]
 
-    # Vérification
+    # Vérification longueur
+    assert len(L1c) == len(L1)
+    assert len(L2c) == len(L2)
+
+    # Vérification éléments
+    for e in L1c:
+        # On vérifie si e est dans L1
+        test = False
+        for c in L1:
+            if c[0] == e[0] and c[1] == e[1]:
+                test = True
+        assert test  # Sinon assert
+    for e in L2c:  # Idem, TODO : refactorisation avec fonction
+        test = False
+        for c in L2:
+            if c[0] == e[0] and c[1] == e[1]:
+                test = True
+        assert test

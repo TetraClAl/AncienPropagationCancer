@@ -26,7 +26,7 @@ def voisin_dir(hex, direction):
     direction_calc = hex_directions[parity][direction]
 
     # Calcul des nouvelles coordonnées ajoutant nos coordonnées d'origine comme offset
-    # Mauvaise inversion ? TODO : Vérifier que les coordonnées ne sont pas inversées
+    # Mauvaise inversion ? TODO : Vérifier que les coordonnées ne sont pas inversées (update : normalement c'est bon, les tests sont corrects)
     return hex[1] + direction_calc[0], hex[0] + direction_calc[1]
 
 
