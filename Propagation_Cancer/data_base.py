@@ -6,7 +6,7 @@ def s_create_univers(x, y):
     return np.zeros((x, y), dtype=int)
 
 
-def s_coord_validC(x, y, univers):
+def s_coord_valid(x, y, univers):
     """ Renvoie True si les coordonnées sont valides. """
     # Condition de positivité
     if x < 0:
@@ -28,42 +28,47 @@ def s_coord_validC(x, y, univers):
     return True
 
 
-def s_cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
-    """ Transforme des coordonnées cubiques en coordonnées cartésiennes. """
-    x, y = coord
-    yr = y
-    xr = x + y // 2
-
-    return xr, yr
-
-
-def s_coord_valid(coord, univers):
-    """ Renvoie True si les coordonnées sont valides. """
-    x, y = s_cubic_to_cart(coord)
-    return s_coord_validC(x, y, univers)
-
-
-def s_get_cell(coord, univers):
-    """ Retourne l'état de la cellule (x, y). """
-    assert s_coord_valid(coord, univers)
-    x, y = s_cubic_to_cart(coord)
-    return univers[x, y]
-
-
-def s_set_cell(coord, value, univers):
-    """ Modifie l'état de la cellule (x, y). """
-    assert s_coord_valid(coord, univers)
-    x, y = s_cubic_to_cart(coord)
-    univers[x, y] = value
-
-
-def s_get_cellC(x, y, univers):
+def s_get_cell(x, y, univers):
     """ Retourne l'état de la cellule x, y en repère cartésien. """
-    assert s_coord_validC(x, y, univers)
+    #assert s_coord_valid(x, y, univers)
     return univers[x, y]
 
 
-def s_set_cellC(x, y, value, univers):
+def s_set_cell(x, y, value, univers):
     """ Modifie l'état de la cellule x, y en repère cartésien. """
-    assert s_coord_validC(x, y, univers)
+    #assert s_coord_valid(x, y, univers)
     univers[x, y] = value
+
+
+def s_check_list(l1, univers):
+    LR = []
+    for e in l1:
+        if s_coord_valid(e[0], e[1], univers):
+            LR += [e]
+    return LR
+
+
+oddr_directions = [
+    [[+1,  0], [0, -1], [-1, -1],
+     [-1,  0], [-1, +1], [0, +1]],
+    [[+1,  0], [+1, -1], [0, -1],
+     [-1,  0], [0, +1], [+1, +1]],
+]
+
+
+def voisin_dir(hex, direction):
+    if hex[0] % 2 == 1:
+        parity = 1
+    else:
+        parity = 0
+    dir = oddr_directions[parity][direction]
+    return hex[1] + dir[0], hex[0] + dir[1]
+
+
+def s_get_adj(x, y, univers):
+    """ Retourne la liste des coordonnées des cellules adjacentes à (x, y). """
+    Lc = []
+    for direction in range(6):
+        x1, y2 = voisin_dir([x, y], direction)
+        Lc += [[x1, y2]]
+    return s_check_list(Lc, univers)
