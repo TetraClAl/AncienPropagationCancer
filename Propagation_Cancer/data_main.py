@@ -47,6 +47,9 @@ def set_cellC(x, y, value, univers):
     return s_set_cellC(x, y, value, univers)
 
 
+# Fonctionnalité 2
+
+
 def get_groupe(coord, univers):
     """ Retourne l'index du groupe de la cellule (x, y). """
 

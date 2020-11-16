@@ -34,7 +34,7 @@ def s_cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONT
     yr = y
     xr = x + y // 2
 
-    return yr, xr
+    return xr, yr
 
 
 def s_coord_valid(coord, univers):
@@ -46,13 +46,15 @@ def s_coord_valid(coord, univers):
 def s_get_cell(coord, univers):
     """ Retourne l'état de la cellule (x, y). """
     assert s_coord_valid(coord, univers)
-    return univers[coord]
+    x, y = s_cubic_to_cart(coord)
+    return univers[x, y]
 
 
 def s_set_cell(coord, value, univers):
     """ Modifie l'état de la cellule (x, y). """
     assert s_coord_valid(coord, univers)
-    univers[coord] = value
+    x, y = s_cubic_to_cart(coord)
+    univers[x, y] = value
 
 
 def s_get_cellC(x, y, univers):
