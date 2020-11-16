@@ -51,3 +51,7 @@ def egal_liste(l1, l2):
 
 def copie_liste(l1):
     """ Retourne une deepcopy de l1. """
+
+
+def appliquer_fonction(l1):
+    """ Applique une fonction sur l1. """
