@@ -12,47 +12,19 @@ def create_univers(x, y):
     return s_create_univers(x, y)
 
 
-def coord_valid(coord, univers):
+def coord_valid(x, y, univers):
     """ Renvoie True si les coordonnées sont valides. """
-    return s_coord_valid(coord, univers)
+    return s_coord_valid(x, y, univers)
 
 
-def coord_validC(x, y, univers):
-    """ Renvoie True si les coordonnées sont valides. """
-    return s_coord_validC(x, y, univers)
-
-
-def cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
-    """ Transforme des coordonnées cubiques en coordonnées cartésiennes. """
-    return s_cubic_to_cart(coord)
-
-
-def cart_to_cubic(x, y):   # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
-    """ Transforme des coordonnées cartésiennes x, y en cubique (s, q). """
-    q = y
-    s = x - y // 2
-
-    return (s, q)
-
-
-def get_cell(coord, univers):
+def get_cell(x, y, univers):
     """ Retourne l'état de la cellule (x, y). """
-    return s_get_cell(coord, univers)
+    return s_get_cell(x, y, univers)
 
 
-def set_cell(coord, value, univers):
+def set_cell(x, y, value, univers):
     """ Modifie l'état de la cellule (x, y). """
-    s_set_cell(coord, value, univers)
-
-
-def get_cellC(x, y, univers):
-    """ Retourne l'état de la cellule x, y en repère cartésien. """
-    return s_get_cellC(x, y, univers)
-
-
-def set_cellC(x, y, value, univers):
-    """ Modifie l'état de la cellule x, y en repère cartésien. """
-    return s_set_cellC(x, y, value, univers)
+    s_set_cell(x, y, value, univers)
 
 
 # Fonctionnalité 2
@@ -92,18 +64,3 @@ def egal_liste(l1, l2, univers):
 
 def doubl_liste(l1, univers):
     """ Retourne une liste l1 sans doublons. """
-
-
-def copie_liste(l1, univers):
-    """ Retourne une deepcopy de l1. """
-
-
-def appliquer_fonction_univers_cubic(f, univers):
-    """ Applique une fonction f(s, q, univers) sur tout l'univers. """
-    for i in range(np.size(univers, 0)):
-        for j in range(np.sier(univers, 1)):
-            f(cart_to_cubic(i, j), univers)
-
-
-def appliquer_fonction(l1, f, univers):
-    """ Applique une fonction f(coord) sur l1. """
