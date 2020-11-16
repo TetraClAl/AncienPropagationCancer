@@ -1,4 +1,4 @@
-from data import *
+from data_base import *
 
 # 0 = Vide
 # 1 = Tumeur
@@ -7,6 +7,7 @@ from data import *
 
 def create_univers(x, y):
     """ Crée un univers de taille x, y. """
+    return s_create_univers(x, y)
 
 
 def coord_valid(coord, univers):
@@ -31,10 +32,12 @@ def set_cell(coord, value, univers):
 
 def get_cellC(x, y, univers):
     """ Retourne l'état de la cellule x, y en repère cartésien. """
+    return s_get_cellC(x, y, univers)
 
 
 def set_cellC(x, y, value, univers):
     """ Modifie l'état de la cellule x, y en repère cartésien. """
+    return s_set_cellC(x, y, value, univers)
 
 
 def get_groupe(coord, univers):

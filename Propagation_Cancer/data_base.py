@@ -1,12 +1,12 @@
 from data_import import *
 
 
-def _create_univers(x, y):
+def s_create_univers(x, y):
     """ Crée un univers de taille x, y. """
-    return np.array((x, y))
+    return np.zeros((x, y), dtype=int)
 
 
-def _coord_validC(coord, univers):
+def s_coord_validC(x, y, univers):
     """ Renvoie True si les coordonnées sont valides. """
     # Condition de positivité
     if x < 0:
@@ -14,8 +14,7 @@ def _coord_validC(coord, univers):
     if y < 0:
         return False
 
-    # Dépliage du tuple et récupération taille
-    x, y = coord
+    # Taille
     tx = np.size(univers, 0)
     ty = np.size(univers, 1)
 
@@ -29,36 +28,40 @@ def _coord_validC(coord, univers):
     return True
 
 
-def _cubic_to_cart(x, y):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
+def s_cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
     """ Transforme des coordonnées cubiques en coordonnées cartésiennes. """
-    ycub = y
-    xcub = x - y // 2
+    x, y = coord
+    yr = y
+    xr = x - y // 2
+
+    return yr, xr
 
 
-def _coord_valid(x, y, univers):
+def s_coord_valid(coord, univers):
     """ Renvoie True si les coordonnées sont valides. """
-    return _coord_validC(_cubic_to_cart(x, y), univers)
+    x, y = s_cubic_to_cart(coord)
+    return s_coord_validC(x, y, univers)
 
 
-def _get_cell(coord, univers):
+def s_get_cell(coord, univers):
     """ Retourne l'état de la cellule (x, y). """
-    assert _coord_valid(coord)
+    assert s_coord_valid(coord, univers)
     return univers[coord]
 
 
-def _set_cell(coord, value, univers):
+def s_set_cell(coord, value, univers):
     """ Modifie l'état de la cellule (x, y). """
-    assert _coord_valid(coord)
+    assert s_coord_valid(coord, univers)
     univers[coord] = value
 
 
-def _get_cellC(x, y, univers):
+def s_get_cellC(x, y, univers):
     """ Retourne l'état de la cellule x, y en repère cartésien. """
-    assert _coord_validC(x, y)
+    assert s_coord_validC(x, y, univers)
     return univers[x, y]
 
 
-def _set_cellC(x, y, value, univers):
+def s_set_cellC(x, y, value, univers):
     """ Modifie l'état de la cellule x, y en repère cartésien. """
-    assert _coord_validC(x, y)
-    univers[coord] = value
+    assert s_coord_validC(x, y, univers)
+    univers[x, y] = value
