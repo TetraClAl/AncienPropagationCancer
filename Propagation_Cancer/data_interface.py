@@ -10,11 +10,11 @@ def set_cell(coord, value):
 
 
 def get_cellC(x, y):
-    """ Retourne l'état de la cellule x, y en repère carthésien. """
+    """ Retourne l'état de la cellule x, y en repère cartésien. """
 
 
 def set_cellC(x, y, value):
-    """ Modifie l'état de la cellule x, y en repère carthésien. """
+    """ Modifie l'état de la cellule x, y en repère cartésien. """
 
 
 def get_groupe(coord):
@@ -49,9 +49,13 @@ def egal_liste(l1, l2):
     """ Indique si deux listes sont égales. """
 
 
+def doubl_liste(l1):
+    """ Retourne une liste l1 sans doublons. """
+
+
 def copie_liste(l1):
     """ Retourne une deepcopy de l1. """
 
 
-def appliquer_fonction(l1):
-    """ Applique une fonction sur l1. """
+def appliquer_fonction(l1, f):
+    """ Applique une fonction f(coord) sur l1. """
