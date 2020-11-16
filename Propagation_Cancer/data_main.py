@@ -4,6 +4,8 @@ from data_base import *
 # 1 = Tumeur
 # 2 = Astrocyte
 
+# Fonctionnalité 0.1
+
 
 def create_univers(x, y):
     """ Crée un univers de taille x, y. """
@@ -12,22 +14,27 @@ def create_univers(x, y):
 
 def coord_valid(coord, univers):
     """ Renvoie True si les coordonnées sont valides. """
+    return s_coord_valid(coord, univers)
 
 
 def coord_validC(x, y, univers):
     """ Renvoie True si les coordonnées sont valides. """
+    return s_coord_validC(x, y, univers)
 
 
-def cubic_to_cart(x, y):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
+def cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
     """ Transforme des coordonnées cubiques en coordonnées cartésiennes. """
+    return s_cubic_to_cart(coord)
 
 
 def get_cell(coord, univers):
     """ Retourne l'état de la cellule (x, y). """
+    return s_get_cell(coord, univers)
 
 
 def set_cell(coord, value, univers):
     """ Modifie l'état de la cellule (x, y). """
+    s_set_cell(coord, value, univers)
 
 
 def get_cellC(x, y, univers):

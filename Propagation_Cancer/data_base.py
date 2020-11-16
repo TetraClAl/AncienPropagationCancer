@@ -32,7 +32,7 @@ def s_cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONT
     """ Transforme des coordonnées cubiques en coordonnées cartésiennes. """
     x, y = coord
     yr = y
-    xr = x - y // 2
+    xr = x + y // 2
 
     return yr, xr
 
