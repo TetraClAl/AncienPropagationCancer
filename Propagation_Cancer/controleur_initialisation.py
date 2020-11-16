@@ -10,27 +10,35 @@ def ajout_astrocytes(univers, Pocc):
     #nombre réel d'astrocytes
     n = int(Pocc*a*b)
 
-    coords = [[i,j] for i in range(a) for j in range(len(b))]
+    coords = [[i,j] for i in range(a) for j in range(b)]
 
     #on choisit aléatoirement la répartition des astrocytes
     astro = sample(coords, n) 
 
     #on remplace les cellules vides par des astrocytes
     for coord in astro:
-        if get_cell(coord, univers) == 0:
-            set_cell(coord, 2, univers)
+        if get_cell(coord[0], coord[1], univers) == 0:
+            set_cell(coord[0], coord[1], 2, univers)
 
     return univers
 
-def init_univers(ts, tq, init_tumor = np.array([[1]]), Pocc = 0.5):
+def init_univers(tx, ty, init_tumor = np.array([[1]]), Pocc = 0.5, cx = None, cy = None):
 
-    univers = create_univers(ts, tq)
+    univers = create_univers(tx, ty)
+    (a, b) = np.shape(init_tumor)
+
+    if cx == None :
+        cx = (tx - a)//2
+    if cy == None :
+        cy = (ty - b)//2
 
     # on implémente la tumeur initiale
-    (a, b) = np.shape(init_tumor)
+    
     for i in range(a):
         for j in range(b):
-            set_cell((i,j), get_cell((i,j), init_tumor), univers)
+            set_cell(i + cx, j + cy, get_cell(i, j, init_tumor), univers)
 
     #on ajoute les astrocytes
     return ajout_astrocytes(univers, Pocc)
+
+
