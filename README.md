@@ -5,6 +5,7 @@
 Fonctionnalité 0.1 : créer dépôt git et groupe teams 
 Fonctionalité 0.2 : définition du MVP et choix de modélisation 
 Fonctionnalité 0.3 : planning et mise en forme du ReadMe 
+Fonctionnalité 0.4 : fonction utilitaire essentielle 
 
 ## Sprint 1 
 
