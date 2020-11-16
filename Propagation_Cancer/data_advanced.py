@@ -11,6 +11,7 @@ oddr_directions = [
 
 
 def voisin_dir(hex, direction):
+    """ Retourne les coordonnées de l'hex situé dans la direction associée. """
     if hex[0] % 2 == 1:
         parity = 1
     else:
