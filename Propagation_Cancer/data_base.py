@@ -30,11 +30,11 @@ def s_coord_valid(x, y, univers):
 
 def s_get_cell(x, y, univers):
     """ Retourne l'état de la cellule x, y en repère cartésien. """
-    assert s_coord_valid(x, y, univers)
+    #assert s_coord_valid(x, y, univers)
     return univers[x, y]
 
 
 def s_set_cell(x, y, value, univers):
     """ Modifie l'état de la cellule x, y en repère cartésien. """
-    assert s_coord_valid(x, y, univers)
+    #assert s_coord_valid(x, y, univers)
     univers[x, y] = value
