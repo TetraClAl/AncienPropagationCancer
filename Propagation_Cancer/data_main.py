@@ -27,6 +27,14 @@ def cubic_to_cart(coord):  # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTRO
     return s_cubic_to_cart(coord)
 
 
+def cart_to_cubic(x, y):   # EVITER D'UTILISER CETTE FONCTION DANS LE VUE/CONTROLLER
+    """ Transforme des coordonnées cartésiennes x, y en cubique (s, q). """
+    q = y
+    s = x - y // 2
+
+    return (s, q)
+
+
 def get_cell(coord, univers):
     """ Retourne l'état de la cellule (x, y). """
     return s_get_cell(coord, univers)
@@ -88,6 +96,13 @@ def doubl_liste(l1, univers):
 
 def copie_liste(l1, univers):
     """ Retourne une deepcopy de l1. """
+
+
+def appliquer_fonction_univers_cubic(f, univers):
+    """ Applique une fonction f(s, q, univers) sur tout l'univers. """
+    for i in range(np.size(univers, 0)):
+        for j in range(np.sier(univers, 1)):
+            f(cart_to_cubic(i, j), univers)
 
 
 def appliquer_fonction(l1, f, univers):
