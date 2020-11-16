@@ -1,0 +1,1 @@
+"D:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" game_of_life/game_of_life.py 50 50 r_pentomino 10 10 'r' 200 --interval 100 --save

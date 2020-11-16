@@ -1,0 +1,1 @@
+py -m pytest --cov=game_of_life --cov-report html test_*.py
