@@ -1,0 +1,1 @@
+"D:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" -m pytest --cov=Propagation_Cancer --cov-report html Propagation_Cancer/test_*.py

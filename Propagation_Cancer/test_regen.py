@@ -2,8 +2,9 @@ from controleur_regen import *
 
 def test_regen_centre():
     univers = create_univers(5,5)
-    regen_centre(univers, 2, 2, 2, 3)
-    print(univers)
+    env = create_env(univers)
+    regen_centre(env, 2, 2, 2, 3)
+    
     A = np. array([[0, 0, 0, 0, 0],
                    [0, 0, 0, 0, 0],
                    [0, 0, 1, 1, 1],
@@ -12,5 +13,6 @@ def test_regen_centre():
 
     assert np.array_equal(univers, A)
 
-test_regen_centre()
-print("test regen ok")
+if __name__ == "__main__":
+    test_regen_centre()
+    print("test regen ok")
