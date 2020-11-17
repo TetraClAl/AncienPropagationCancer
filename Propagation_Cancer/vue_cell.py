@@ -47,17 +47,6 @@ def display_cell(x, y, univers):
         ax.add_patch(patch)
 
 
-# pour l'affichage de l'univers entier
-""" def pavage_hex_center(n, m, univers):
-    "Pavage hexagonal de n*m patches, avec les centres"
-    for x in range(n):
-        for y in range(m):
-            display_center(x, y)
-            if create_cell(x, y, univers) != None:
-                hexagone = create_cell(x, y, univers)
-                ax.add_patch(hexagone) """
-
-
 # univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 # for y in range(3):
 #     display_cell(0, y, univers)
