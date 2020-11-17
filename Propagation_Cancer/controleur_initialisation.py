@@ -24,21 +24,27 @@ def ajout_astrocytes(univers, Pocc):
 
     return univers
 
-def init_univers(tx, ty, centre, init_tumor = np.array([[1]]), Pocc = 0.5, cx = None, cy = None):
+def init_univers(tx, ty, centre, Pocc = 0.5, init_tumor = None, cx = None, cy = None):
 
+    # centre est une liste de 4 valeurs : les coordonnées du point en haut à gauche du centre, 
+    # la longeur selon x et selon y
+    # cx et cy sont les coordonnées du point a partir du quel on introduit la forme init_tumor
     univers = create_univers(tx, ty)
-    (a, b) = np.shape(init_tumor)
-
-    if cx == None :
-        cx = (tx - a)//2
-    if cy == None :
-        cy = (ty - b)//2
-
-    # on implémente la tumeur initiale (ie la tumeur à t=0)
     
-    for i in range(a):
-        for j in range(b):
-            set_cell(i + cx, j + cy, get_cell(i, j, init_tumor), univers)
+    if init_tumor != None : #on veut rajouter une forme en plus du centre
+        (a, b) = np.shape(init_tumor)
+    
+        # si rien n'est précisé, on met init_tumor au milieu
+        if cx == None :
+            cx = (tx - a)//2
+        if cy == None :
+            cy = (ty - b)//2
+
+        # on implémente la tumeur initiale (ie la tumeur à t=0)
+    
+        for i in range(a):
+            for j in range(b):
+                set_cell(i + cx, j + cy, get_cell(i, j, init_tumor), univers)
 
     # on vérifie que le centre est bien composé de cellules tumorales
     regen_centre(univers, centre[0], centre[1], centre[2], centre[3])
