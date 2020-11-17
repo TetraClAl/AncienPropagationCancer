@@ -75,6 +75,7 @@ def create_env(univers):
 
 def get_groupe(x, y, env):
     """ Retourne l'index du groupe de la cellule (x, y). """
+    return s_get_groupe(x, y, env)
 
 
 def get_adj(x, y, univers):
@@ -84,22 +85,26 @@ def get_adj(x, y, univers):
 
 def get_adj_groupe(index, env):
     """ Retourne la liste des coordonnées des cellules adjacentes au groupe index. """
+    return env[0][index][1]
 
 
 def get_membre_groupe(index, env):
     """ Retourne la liste des coordonnées des cellules du groupe index. """
+    return env[0][index][0]
 
 
 def union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
+    return s_union_liste(l1, l2)
 
 
-def inter_liste(l1, l2, univers):
+def inter_liste(l1, l2):
     """ Fait un inter de deux listes de cellules. """
 
 
 def prive_liste(l1, l2):
     """ Retourne la liste l1 privée de l2. """
+    return s_prive_liste(l1, l2)
 
 
 def egal_liste(l1, l2, univers):
