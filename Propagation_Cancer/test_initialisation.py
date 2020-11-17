@@ -11,8 +11,14 @@ def test_ajout_astrocytes():
     assert res == 5
 
 def test_init_univers():
-    univers = init_univers(1,1)
-    assert univers == np.array([[1]])
+    univers = init_univers(4, 4, (1,1,2,2))
+    assert np.shape(univers) == (4,4)
+    res = 0
+    for i in range(4):
+        for j in range(4):
+            if get_cell(i, j, univers) == 1:
+                res+=1
+    assert res == 4
 
 
 test_ajout_astrocytes()

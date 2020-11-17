@@ -2,6 +2,8 @@ from data_main import *
 import numpy as np
 from random import randint
 from random import sample
+from controleur_regen import regen_centre
+
 
 def ajout_astrocytes(univers, Pocc):
 
@@ -22,7 +24,7 @@ def ajout_astrocytes(univers, Pocc):
 
     return univers
 
-def init_univers(tx, ty, init_tumor = np.array([[1]]), Pocc = 0.5, cx = None, cy = None):
+def init_univers(tx, ty, centre, init_tumor = np.array([[1]]), Pocc = 0.5, cx = None, cy = None):
 
     univers = create_univers(tx, ty)
     (a, b) = np.shape(init_tumor)
@@ -32,13 +34,17 @@ def init_univers(tx, ty, init_tumor = np.array([[1]]), Pocc = 0.5, cx = None, cy
     if cy == None :
         cy = (ty - b)//2
 
-    # on implémente la tumeur initiale
+    # on implémente la tumeur initiale (ie la tumeur à t=0)
     
     for i in range(a):
         for j in range(b):
             set_cell(i + cx, j + cy, get_cell(i, j, init_tumor), univers)
 
+    # on vérifie que le centre est bien composé de cellules tumorales
+    regen_centre(univers, centre[0], centre[1], centre[2], centre[3])
+
     #on ajoute les astrocytes
     return ajout_astrocytes(univers, Pocc)
 
 
+### A l'état initial, on a un centre composé de cellules tumorales, pouvant être complété par une forme particulière init_tumor ###
