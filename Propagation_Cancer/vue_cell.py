@@ -1,21 +1,9 @@
-from math import *
-from matplotlib import *
-import matplotlib.patches as patches
-import matplotlib.pyplot as plt
-from data_main import *
-import numpy as np
+from vue_utilitaires import *
 
-fig = plt.figure(figsize=(6, 6))
-# # necessite l'appel à une sous figure
-ax = plt.subplot(1, 1, 1)
-plt.axis([-1, 10, -1, 10])
-
-
-def plane_coord(x, y):
-    "Retourne les coordonnées dans le plan pour plt"
-    yp = (sqrt(3)*y)
-    xp = 2*x + y % 2
-    return(xp, yp)
+# fig = plt.figure(figsize=(6, 6))
+# # # necessite l'appel à une sous figure
+# ax = plt.subplot(1, 1, 1)
+# plt.axis([-1, 10, -1, 10])
 
 
 def create_cell(x, y, univers):
@@ -34,22 +22,8 @@ def create_cell(x, y, univers):
     return hexagone
 
 
-def display_center(x, y):
-    "Affiche le centre d'un hexagone"
-    xp, yp = plane_coord(x, y)
-    plt.scatter(xp, yp, s=4)
-    plt.text(xp, yp, "(" + str(x) + ","+str(y)+")")
-
-
-def display_cell(x, y, univers):
-    patch = create_cell(x, y, univers)
+def display_cell(x, y, univers, ax):
+    "Affiche le patch correspond à la cellule sur le subplot ax. Une cellule vide n'est pas représentée"
+    cell = create_cell(x, y, univers)
     if patch != None:
-        ax.add_patch(patch)
-
-
-# univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
-# for y in range(3):
-#     display_cell(0, y, univers)
-
-
-# plt.show()
+        ax.add_patch(cell)
