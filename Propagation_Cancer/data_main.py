@@ -59,7 +59,7 @@ def create_env(x, y):
     """ Crée un environnement de taille (x, y). """
 
 
-def get_groupe(coord, env):
+def get_groupe(x, y, env):
     """ Retourne l'index du groupe de la cellule (x, y). """
 
 
@@ -76,7 +76,7 @@ def get_membre_groupe(index, env):
     """ Retourne la liste des coordonnées des cellules du groupe index. """
 
 
-def union_liste(l1, l2, univers):
+def union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
 
 
@@ -84,7 +84,7 @@ def inter_liste(l1, l2, univers):
     """ Fait un inter de deux listes de cellules. """
 
 
-def prive_liste(l1, l2, univers):
+def prive_liste(l1, l2):
     """ Retourne la liste l1 privée de l2. """
 
 
