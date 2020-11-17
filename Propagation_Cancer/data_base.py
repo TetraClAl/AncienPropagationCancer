@@ -38,3 +38,11 @@ def s_set_cell(x, y, value, univers):
     """ Modifie l'état de la cellule x, y en repère cartésien. """
     #assert s_coord_valid(x, y, univers)
     univers[x, y] = value
+
+
+def s_check_list(l1, univers):
+    LR = []
+    for e in l1:
+        if s_coord_valid(e[0], e[1], univers):
+            LR += [e]
+    return LR

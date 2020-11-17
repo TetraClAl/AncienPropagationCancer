@@ -1,8 +1,10 @@
 from data_base import *
+from data_advanced import *
 
 # 0 = Vide
 # 1 = Tumeur
 # 2 = Astrocyte
+
 
 # Fonctionnalité 0.1
 
@@ -27,6 +29,10 @@ def set_cell(x, y, value, univers):
     s_set_cell(x, y, value, univers)
 
 
+def check_list(l1, univers):
+    return s_check_list(l1, univers)
+
+
 # Fonctionnalité 2
 
 
@@ -34,8 +40,9 @@ def get_groupe(coord, univers):
     """ Retourne l'index du groupe de la cellule (x, y). """
 
 
-def get_adj(coord, univers):
+def get_adj(x, y, univers):
     """ Retourne la liste des coordonnées des cellules adjacentes à (x, y). """
+    return s_get_adj(x, y, univers)
 
 
 def get_adj_groupe(index, univers):
