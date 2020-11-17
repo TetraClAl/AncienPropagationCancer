@@ -59,3 +59,10 @@ def display_full(univers, show=True):
 
     if show:
         plt.show()
+
+
+        
+if __name__ == "__main__":
+    univers = np.array([[1, 1, 2, 1, 1], [1, 0, 1, 0, 1], [2, 1, 2, 1, 2]])
+    display_univers(univers)
+    plt.show()

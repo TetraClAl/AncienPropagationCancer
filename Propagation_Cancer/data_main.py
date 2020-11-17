@@ -1,4 +1,5 @@
 from data_base import *
+from data_advanced import *
 
 # 0 = Vide
 # 1 = Tumeur

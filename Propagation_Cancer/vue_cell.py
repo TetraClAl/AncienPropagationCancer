@@ -27,3 +27,4 @@ def display_cell(x, y, univers, ax):
     cell = create_cell(x, y, univers)
     if patch != None:
         ax.add_patch(cell)
+        
