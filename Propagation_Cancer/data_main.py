@@ -68,8 +68,9 @@ def check_list(l1, univers):
 # Fonctionnalité 2.1
 
 
-def create_env(x, y):
+def create_env(univers):
     """ Crée un environnement de taille (x, y). """
+    return [univers, []]
 
 
 def get_groupe(x, y, env):

@@ -1,7 +1,7 @@
 from pytest import *
 from data_advanced import *
 
-
+"""
 def test_voisin_dir():
     # Tests directs
     # Examen visuel recommandé TODO : Ajouter un code pour vérifier rapidement visuellement que tout est en ordre.
@@ -36,4 +36,4 @@ def test_s_get_adj():
         for c in L2:
             if c[0] == e[0] and c[1] == e[1]:
                 test = True
-        assert test
+        assert test"""
