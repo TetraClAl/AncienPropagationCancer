@@ -26,8 +26,15 @@ def count_cell_voisinage (univers, x, y) :
     return compteur 
 
 a , b = 0, 1
-avant = count_cell(univers)
+avant_site = count_cell(univers)
 choix_uniforme_site (univers, a, b)
+apres_site = count_cell(univers)
+
+assert avant_site == apres_site
+print ('le nombre de cellules inféctées est stable apres modif site')
+
+avant = count_cell(univers)
+choix_uniforme(univers)
 apres = count_cell(univers)
 
 assert avant == apres 
