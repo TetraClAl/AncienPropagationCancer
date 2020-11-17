@@ -29,4 +29,5 @@ adj = env[1][index][1]
 for e in adj:
     univers[e[0], e[1]] = 2
 
-print(env)
+display_univers(univers)
+plt.show()
