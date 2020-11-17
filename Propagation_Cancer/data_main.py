@@ -24,7 +24,7 @@ from data_advanced import *
 # -------
 
 
-# Fonctionnalité 0.1
+# Fonctionnalité 0.4
 
 
 def create_univers(x, y):
@@ -42,9 +42,22 @@ def get_cell(x, y, univers):
     return s_get_cell(x, y, univers)
 
 
-def set_cell(x, y, value, univers):
+def set_cell(x, y, value, env):
     """ Modifie l'état de la cellule (x, y). """
+    # Fetch
+    univers = env[0]
+    ancien = s_get_cell(x, y, univers)
+
+    # Mise à jour des valeurs
     s_set_cell(x, y, value, univers)
+
+    # Vérification groupe
+    if value == 1:
+        #print("check groupe")
+        s_check_cell_groupe(x, y, env)
+    else:
+        if ancien == 1:
+            s_cell_delete(x, y, env)
 
 
 def check_list(l1, univers):
@@ -52,7 +65,7 @@ def check_list(l1, univers):
     return s_check_list(l1, univers)
 
 
-# Fonctionnalité 2
+# Fonctionnalité 2.1
 
 
 def create_env(x, y):
