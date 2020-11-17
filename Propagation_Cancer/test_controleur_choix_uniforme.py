@@ -25,7 +25,7 @@ def count_cell_voisinage (univers, x, y) :
         compteur += 1 
     return compteur 
 
-a , b = 0, 1
+a , b = 2, 1
 avant_site = count_cell(univers)
 choix_uniforme_site (univers, a, b)
 apres_site = count_cell(univers)
