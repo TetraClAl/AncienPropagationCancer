@@ -4,7 +4,7 @@ def test_regen_centre():
     univers = create_univers(5,5)
     env = create_env(univers)
     regen_centre(env, 2, 2, 2, 3)
-    print(univers)
+    
     A = np. array([[0, 0, 0, 0, 0],
                    [0, 0, 0, 0, 0],
                    [0, 0, 1, 1, 1],
