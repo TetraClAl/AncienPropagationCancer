@@ -1,1 +1,0 @@
-"D:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" -m pytest --cov=game_of_life --cov-report html game_of_life/test_*.py
