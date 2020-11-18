@@ -9,7 +9,14 @@ use_fusion = True
 
 
 def set_fusion(data):
+    global use_fusion
     use_fusion = data
+
+
+def get_fusion():
+    global use_fusion
+    return use_fusion
+
 
 # ----- Ce code pourrait nécessiter du refactoring
 
@@ -82,7 +89,10 @@ def s_union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
     # Cas fusion
     if use_fusion:
+        print("fusion")
         return union_tri(l1, l2)
+    else:
+        print("legacy")
 
     # Initialisation
     Lf = []
