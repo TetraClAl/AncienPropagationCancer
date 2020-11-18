@@ -10,16 +10,16 @@ def test_create_patch():
     astroc = create_patch(0, 2, 2)
 
     # vide: blanc
-    assert vide.get_facecolor() == (1, 1, 1, 1)
+    assert vide.get_facecolor() == couleur[0]
 
-    # tumoral: rouge, mi-transparent
-    assert tumor.get_facecolor() == (1, 0, 0, 0.5)
+    # tumoral: rouge
+    assert tumor.get_facecolor() == couleur[1]
 
     # astrocyte: gris, mi transparent
-    assert astroc.get_facecolor() == (
-        0.5019607843137255, 0.5019607843137255, 0.5019607843137255, 0.5)
+    assert astroc.get_facecolor() == couleur[2]
 
 
 def test_display_patch():
     # vérifié sous matplotlib
+    # TODO
     assert True

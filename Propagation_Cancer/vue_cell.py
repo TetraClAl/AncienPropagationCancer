@@ -25,6 +25,5 @@ def create_cell(x, y, univers):
 def display_cell(x, y, univers, ax):
     "Affiche le patch correspond à la cellule sur le subplot ax. Une cellule vide n'est pas représentée"
     cell = create_cell(x, y, univers)
-    if patch != None:
+    if cell != None:
         ax.add_patch(cell)
-        
