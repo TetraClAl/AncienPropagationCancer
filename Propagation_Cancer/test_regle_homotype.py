@@ -1,7 +1,7 @@
 from controleur_regle_homotype import *
 import numpy as np
 
-
+"""
 
 def test_dep_homotype():
 
@@ -130,3 +130,4 @@ if __name__ == "__main__":
 
 
 
+"""
