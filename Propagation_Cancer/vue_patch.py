@@ -4,20 +4,10 @@ from vue_utilitaires import *
 def create_patch(x, y, etat):
     """Crée le patch correspondant à la cellule"""
     xp, yp = plane_coord(x, y)
-    # site vide
-    if etat == 0:
-        hexagone = patches.RegularPolygon(
-            (xp, yp), 6, radius=2/sqrt(3), ec='grey', fc='white')
+    # arguments: centre, nombre de sommet, distance centre-sommet, couleur du bord, couleur de l'interieur
+    hexagone = patches.RegularPolygon(
+        (xp, yp), 6, radius=2/sqrt(3), ec='grey', fc=couleur[etat])
 
-    # cellule tumorale
-    elif etat == 1:
-        hexagone = patches.RegularPolygon(
-            (xp, yp), 6, radius=2/sqrt(3), ec='white', fc='red', alpha=0.5)
-
-    # astrocyte sain
-    else:
-        hexagone = patches.RegularPolygon(
-            (xp, yp), 6, radius=2/sqrt(3), ec='white', fc='gray', alpha=0.5)
     return hexagone
 
 
