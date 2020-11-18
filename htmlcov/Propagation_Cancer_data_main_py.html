@@ -21,8 +21,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            57 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">45 run</button>
+            58 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">46 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">12 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
@@ -134,7 +134,7 @@
     <p id="t81" class="pln"><span class="n"><a href="#t81">81</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t82" class="run"><span class="n"><a href="#t82">82</a></span><span class="t"><span class="key">def</span> <span class="nam">get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t">    <span class="str">""" Retourne l'index du groupe de la cellule (x, y). """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t84" class="mis show_mis"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="key">return</span> <span class="nam">s_get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t84" class="run"><span class="n"><a href="#t84">84</a></span><span class="t">    <span class="key">return</span> <span class="nam">s_get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t85" class="pln"><span class="n"><a href="#t85">85</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t87" class="run"><span class="n"><a href="#t87">87</a></span><span class="t"><span class="key">def</span> <span class="nam">get_adj</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">univers</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -176,7 +176,7 @@
     <p id="t123" class="pln"><span class="n"><a href="#t123">123</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t124" class="run"><span class="n"><a href="#t124">124</a></span><span class="t"><span class="key">def</span> <span class="nam">tri_cells</span><span class="op">(</span><span class="nam">univers</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t125" class="pln"><span class="n"><a href="#t125">125</a></span><span class="t">    <span class="str">"Renvoie les coordonn&#233;es des cellules tri&#233;es par &#233;tats, en trois listes"</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t126" class="run"><span class="n"><a href="#t126">126</a></span><span class="t">    <span class="nam">n</span><span class="op">,</span> <span class="nam">m</span> <span class="op">=</span> <span class="nam">np</span><span class="op">.</span><span class="nam">shape</span><span class="op">(</span><span class="nam">univers</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t126" class="run"><span class="n"><a href="#t126">126</a></span><span class="t">    <span class="op">(</span><span class="nam">n</span><span class="op">,</span> <span class="nam">m</span><span class="op">)</span> <span class="op">=</span> <span class="nam">np</span><span class="op">.</span><span class="nam">shape</span><span class="op">(</span><span class="nam">univers</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t127" class="run"><span class="n"><a href="#t127">127</a></span><span class="t">    <span class="nam">vides</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p id="t128" class="run"><span class="n"><a href="#t128">128</a></span><span class="t">    <span class="nam">tumorales</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p id="t129" class="run"><span class="n"><a href="#t129">129</a></span><span class="t">    <span class="nam">astrocytes</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
@@ -198,12 +198,13 @@
     <p id="t145" class="pln"><span class="n"><a href="#t145">145</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t146" class="mis show_mis"><span class="n"><a href="#t146">146</a></span><span class="t">    <span class="nam">env1</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">[</span><span class="num">0</span><span class="op">,</span> <span class="num">0</span><span class="op">]</span> <span class="op">=</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p id="t147" class="mis show_mis"><span class="n"><a href="#t147">147</a></span><span class="t">    <span class="nam">print</span><span class="op">(</span><span class="nam">env2</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">[</span><span class="num">0</span><span class="op">,</span> <span class="num">0</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t148" class="mis show_mis"><span class="n"><a href="#t148">148</a></span><span class="t">    <span class="nam">print</span><span class="op">(</span><span class="nam">tri_cells</span><span class="op">(</span><span class="nam">np</span><span class="op">.</span><span class="nam">array</span><span class="op">(</span><span class="op">[</span><span class="op">[</span><span class="num">0</span><span class="op">,</span> <span class="num">1</span><span class="op">,</span> <span class="num">0</span><span class="op">]</span><span class="op">,</span> <span class="op">[</span><span class="num">0</span><span class="op">,</span> <span class="num">1</span><span class="op">,</span> <span class="num">1</span><span class="op">]</span><span class="op">,</span> <span class="op">[</span><span class="num">1</span><span class="op">,</span> <span class="num">0</span><span class="op">,</span> <span class="num">0</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
-            created at 2020-11-18 16:50 +0100
+            created at 2020-11-18 20:16 +0100
         </p>
     </div>
 </div>
