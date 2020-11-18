@@ -123,7 +123,7 @@ def doubl_liste(l1, univers):
 
 def tri_cells(univers):
     "Renvoie les coordonnées des cellules triées par états, en trois listes"
-    n, m = np.shape(univers)
+    (n, m) = np.shape(univers)
     vides = []
     tumorales = []
     astrocytes = []
@@ -145,3 +145,4 @@ if __name__ == "__main__":
 
     env1[0][0, 0] = 1
     print(env2[0][0, 0])
+    print(tri_cells(np.array([[0, 1, 0], [0, 1, 1], [1, 0, 0]])))
