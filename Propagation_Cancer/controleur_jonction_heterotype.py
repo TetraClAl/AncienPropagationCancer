@@ -2,7 +2,7 @@ import random as rd
 
 from data_main import * 
 
-def get_adj_tri(x, y, env) : 
+def get_adj_astrocyte(x, y, env) : 
     """ renvoie la liste des sites adjacents occupés par un astrocyte"""
     astro = []
     univers = env[0]
@@ -11,7 +11,7 @@ def get_adj_tri(x, y, env) :
         x,y = site 
         if get_cell(x, y, univers) == 2 : #si ce sont des astrocytes, on les rajoute à la liste 
             astro.append (site)
-    return asto
+    return astro
 
 
 
@@ -33,19 +33,21 @@ def jonction_heterotype_site (env,x ,y, q):
 
     if u < q : #la cellule va migrer vers un astrocyte   
         astro = get_adj_astrocyte (x, y, env)
-        indice = rd.randint (0, len(astro))
-        a, b = astro[indice]
+        if astro != [] : 
+            indice = rd.randint (0, len(astro) - 1)
+            a, b = astro[indice]
 
-        set_cell(a, b , 1, env)
-        set_cell(x ,y, 0, env)
+            set_cell(a, b , 1, env)
+            set_cell(x ,y, 0, env)
 
     else : #elle migre vers un site vide 
         vide = get_adj_vide (x, y, env)
-        indice = rd. randint (0, len(vide))
-        a, b = vide[indice]
+        if vide != [] : 
+            indice = rd. randint (0, len(vide) - 1)
+            a, b = vide[indice]
 
-        set_cell(a, b , 1, env)
-        set_cell(x ,y, 0, env)
+            set_cell(a, b , 1, env)
+            set_cell(x ,y, 0, env)
 
 
 def jonction_heterotype (env) : 
