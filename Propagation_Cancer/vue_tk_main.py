@@ -5,6 +5,7 @@ from data_main import *
 from vue_univers import *
 from vue_animation import animation
 from tkinter import messagebox
+from vue_tk_savewin import *
 
 
 class App():
@@ -15,7 +16,8 @@ class App():
 
         menufichier = tk.Menu(mainmenu, tearoff=0)
         menufichier.add_command(label="Quitter", command=self.quit)
-        menufichier.add_command(label="Sauvegarder", command=self.quit)
+        menufichier.add_command(label="Sauvegarder",
+                                command=self.save_simulation)
 
         menusimulation = tk.Menu(mainmenu, tearoff=0)
         menusimulation.add_command(label="Générer", command=self.generate)
@@ -35,6 +37,8 @@ class App():
 
         fig = plt.figure(figsize=(6, 6))
         self.graph_display(fig)
+
+        self.hold_animation = None
 
         self.create_menu()
         self.root.protocol("WM_DELETE_WINDOW", quit)
@@ -65,8 +69,19 @@ class App():
         self.hold_animation = animation(
             env, 100, show=False, fig=fig, interv=300)
 
+    def save_simulation(self):
+        # S'il n'y a aucune animation
+        if self.hold_animation == None:
+            messagebox.showerror(title="Erreur sauvegarde",
+                                 message="Pas d'animation à sauvegarder !")
+            return
+
+        # Sinon sauvegarde
+        savewindows = SaveWin(self.hold_animation)
+
     def generate(self):
         self.canvas.grid_forget()
+        self.hold_animation = None
 
         univers = create_univers(5, 5)
         env = [univers, []]

@@ -207,7 +207,7 @@ def s_creer_groupe(cellules, env):
 
 def s_check_cell_groupe(x, y, env):
     i = s_get_groupe(x, y, env)  # Non _adj
-    if i == None:
+    if i == None and s_get_cell(x, y, env[0]) == 1:
         return s_creer_groupe([[x, y]], env)
     return i
 
