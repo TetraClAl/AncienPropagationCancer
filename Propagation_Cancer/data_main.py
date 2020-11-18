@@ -119,3 +119,11 @@ def egal_liste(l1, l2, univers):
 
 def doubl_liste(l1, univers):
     """ Retourne une liste l1 sans doublons. """
+
+
+if __name__ == "__main__":
+    env1 = create_env(np.array([[0, 1, 0], [0, 1, 1], [1, 0, 0]]))
+    env2 = copy_env(env1)
+
+    env1[0][0, 0] = 1
+    print(env2[0][0, 0])
