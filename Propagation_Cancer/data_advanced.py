@@ -1,5 +1,6 @@
 from data_import import *
 from data_base import *
+from data_advanced import *
 
 # Note to self (TODO) : utiliser des listes de coordonnées triées selon l'ordre alphabétique pourrait permettre d'accélérer les fusions de listes en éléminant les doublons.
 # Les propriétés de ces éléments (coordonnées ne se répétant pas) pourraient permettre d'obtenir un algo très rapide.
@@ -191,48 +192,3 @@ def s_cell_delete(x, y, env):
     # On recrée les groupes
     for e in cells:
         s_check_cell_groupe(e[0], e[1], env)
-
-
-# ------ Fonctions fusion
-
-
-def comp_coord(c1, c2):
-    """ Renvoie True si c1 >= c2. """
-    if c1[0] > c2[0]:
-        return True
-    if c1[0] < c2[0]:
-        return False
-    elif c1[1] >= c2[1]:
-        return True
-    return False
-
-
-def tri_liste(l1):
-    """ Fonction de tri de listes basique, à ne pas utiliser pour des listes de plus d'une dizaine d'éléments, préférer une approche par fusions successives. """
-    Lr = []
-
-    while len(l1) > 0:
-        # Initialisation à 0 de l'index
-        index = 0
-
-        # On prend le plus petit élément restant dans la liste
-        for i in range(1, len(l1)):
-            if comp_coord(l1[index], l1[i]):
-                index = i
-
-        # On l'ajoute à Lr
-        Lr += [l1[index]]
-        del l1[index]
-
-    return Lr
-
-
-def union_tri(l1, l2):
-    """ Effectue une fusion tri. """
-    # Initialisation des variables
-    Lf = []
-    index1 = 0
-    index2 = 0
-
-    while index1 < len(l1) and index2 < len(l2):
-        print("r")
