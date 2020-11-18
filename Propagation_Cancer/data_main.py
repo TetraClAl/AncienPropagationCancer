@@ -113,3 +113,21 @@ def egal_liste(l1, l2, univers):
 
 def doubl_liste(l1, univers):
     """ Retourne une liste l1 sans doublons. """
+
+
+def tri_cells(univers):
+    "Renvoie les coordonnées des cellules triées par états, en trois listes"
+    n, m = np.shape(univers)
+    vides = []
+    tumorales = []
+    astrocytes = []
+    for x in range(n):
+        for y in range(m):
+            etat = get_cell(x, y, univers)
+            if etat == 0:
+                vides += [(x, y)]
+            elif etat == 1:
+                tumorales += [(x, y)]
+            else:
+                astrocytes += [(x, y)]
+    return vides, tumorales, astrocytes

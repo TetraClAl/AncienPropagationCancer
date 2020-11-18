@@ -25,4 +25,4 @@ def display_center(x, y, fig):
 # #0 = astrocyte = blanc
 # 2= astrocyte = gris
 # 1= tumorale = rouge
-couleur = [(1.0, 1.0, 1.0, 1.0), (1.0, 0.0, 0.0, 1.0), (0.5, 0.5, 0.5, 1.0)]
+couleur = [(1.0, 1.0, 1.0, 0.5), (1.0, 0.0, 0.0, 0.5), (0.5, 0.5, 0.5, 0.5)]

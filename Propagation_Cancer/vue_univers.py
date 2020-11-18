@@ -14,24 +14,6 @@ def display_univers(univers, ax):
 # plt.show()
 
 
-def tri_cells(univers):
-    "Renvoie les coordonnées des cellules triées par états, en trois listes"
-    n, m = np.shape(univers)
-    vides = []
-    tumorales = []
-    astrocytes = []
-    for x in range(n):
-        for y in range(m):
-            etat = get_cell(x, y, univers)
-            if etat == 0:
-                vides += [(x, y)]
-            elif etat == 1:
-                tumorales += [(x, y)]
-            else:
-                astrocytes += [(x, y)]
-    return vides, tumorales, astrocytes
-
-
 def display_full(univers, ax, show=True):
 
     v, t, a = tri_cells(univers)

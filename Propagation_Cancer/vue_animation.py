@@ -71,18 +71,21 @@ def animation_update(i, omega, plane):
     return redim(plane)
 
 
-def animation(env, n, regle=choix_uniforme, show=True):
-    """Animation de n générations en partant initialement de env. regle est une fonction qui modifie un env. Par défaut, l'affichage est activé avec show"""
+def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
+    """Animation de n générations en partant initialement de env. regle est une fonction qui modifie un env. Par défaut, l'affichage est activé avec show."""
 
     omeg = omega(env, n, regle)
     a, b = np.shape(omeg[0])
 
     # création de la figure avec des axes adaptés à la taille de l'univers
-    fig, ax = plt.subplots(1)
+    if fig == None:
+        fig = plt.figure()
+
+    ax = fig.add_subplot(1, 1, 1)
     plt.axis([-1, 2*(a+1), -1, sqrt(3)*b + 0.5])
 
     # création du plan vide
-    plane = create_plane(n, m, ax)
+    plane = create_plane(a, b, ax)
 
     # Fonctions d'animation, update:  int -> liste de patches
     def f_update(i): return animation_update(i, omeg, plane)
@@ -90,7 +93,7 @@ def animation(env, n, regle=choix_uniforme, show=True):
 
     # Animation. blit: ne change que les elements modifiés d'une frame à l'autre
     ani = FuncAnimation(fig, f_update, frames=(
-        n + 1), init_func=f_init, blit=True, interval=600, repeat=True)
+        n), init_func=f_init, blit=True, interval=interv, repeat=True)
 
     if show:
         plt.show()

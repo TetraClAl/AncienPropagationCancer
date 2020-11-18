@@ -6,6 +6,7 @@ from vue_animation import *
 from controleur_choix_uniforme import *
 from vue_storage import *
 import copy as c
+from zzz_ghost_homotype import *
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 
@@ -24,7 +25,7 @@ def display_vue_cell():
 def display_init():
     fig = plt.figure(figsize=(6, 6))
     ax = plt.subplot(1, 1, 1)
-    #plt.axis([-1, 10, -1, 10])
+    # plt.axis([-1, 10, -1, 10])
     x = 3
     y = 0
     centre = [x, y, 2, 2]
@@ -122,3 +123,17 @@ def test_display_cell():
     plt.axis([-1, 10, -1, 10])
     display_cell(0, 1, univers, ax2)
     assert check_figures_equal(fig_ref, fig_test)
+
+
+def display_homotype():
+    centre = [7, 7, 2, 2]
+    env = init_univers(15, 15, centre)
+
+    def homotype(env): return dep_homotype_all(env, 0.1, centre)
+
+    figure = plt.figure()
+    plt.scatter(15, 7*sqrt(3))
+    animation(env, 100, regle=homotype, fig=figure, interv=1900)
+
+
+display_homotype()
