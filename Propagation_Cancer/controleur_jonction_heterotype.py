@@ -1,6 +1,7 @@
 import random as rd 
 
 from data_main import * 
+from controleur_choix_uniforme import * 
 
 def get_adj_astrocyte(x, y, env) : 
     """ renvoie la liste des sites adjacents occupés par un astrocyte"""
@@ -15,7 +16,7 @@ def get_adj_astrocyte(x, y, env) :
 
 
 
-def get_adj_vide (x, y, env) : 
+def get_adj_vide (x, y, env ) : 
     """ renvoie la liste des sites adjacents vides"""
     vide = []
     univers = env[0]
@@ -50,10 +51,10 @@ def jonction_heterotype_site (env,x ,y, q):
             set_cell(x ,y, 0, env)
 
 
-def jonction_heterotype (env) : 
+def jonction_heterotype (env, centre,q ) : 
     """ applique la fonction jonciton_heterotype_site a tous les sites avec une cellule tumorale """
     for i in range (len(env[0])) : 
         for j in range (len(env[0][0])) : #on parcourt tout l'univers
 
             if get_cell (i,j, env[0]) == 1 : #si site est occupé par cellule tumorale elle peut migrer
-                jonction_heterotype_site (env, i ,j)
+                jonction_heterotype_site (env, i ,j,q)
