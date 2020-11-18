@@ -142,7 +142,6 @@
     <p id="t89" class="pln"><span class="n"><a href="#t89">89</a></span><span class="t">    <span class="str">""" Fait une union de deux listes de cellules. """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t90" class="pln"><span class="n"><a href="#t90">90</a></span><span class="t">    <span class="com"># Cas fusion</span>&nbsp;</span><span class="r"></span></p>
     <p id="t91" class="run"><span class="n"><a href="#t91">91</a></span><span class="t">    <span class="key">if</span> <span class="nam">use_fusion</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-<<<<<<< HEAD
     <p id="t92" class="run"><span class="n"><a href="#t92">92</a></span><span class="t">        <span class="key">return</span> <span class="nam">union_tri</span><span class="op">(</span><span class="nam">l1</span><span class="op">,</span> <span class="nam">l2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t93" class="pln"><span class="n"><a href="#t93">93</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">    <span class="com"># Initialisation</span>&nbsp;</span><span class="r"></span></p>
@@ -165,30 +164,6 @@
     <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t112" class="pln"><span class="n"><a href="#t112">112</a></span><span class="t">    <span class="com"># Retour</span>&nbsp;</span><span class="r"></span></p>
     <p id="t113" class="run"><span class="n"><a href="#t113">113</a></span><span class="t">    <span class="key">return</span> <span class="nam">Lf</span>&nbsp;</span><span class="r"></span></p>
-=======
-    <p id="t92" class="pln"><span class="n"><a href="#t92">92</a></span><span class="t">        <span class="com"># print("fusion")</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t93" class="run"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="key">return</span> <span class="nam">union_tri</span><span class="op">(</span><span class="nam">l1</span><span class="op">,</span> <span class="nam">l2</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">    <span class="com"># else:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t95" class="pln"><span class="n"><a href="#t95">95</a></span><span class="t">        <span class="com"># print("legacy")</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t96" class="pln"><span class="n"><a href="#t96">96</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t97" class="pln"><span class="n"><a href="#t97">97</a></span><span class="t">        <span class="com"># Initialisation</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t98" class="run"><span class="n"><a href="#t98">98</a></span><span class="t">    <span class="nam">Lf</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t99" class="run"><span class="n"><a href="#t99">99</a></span><span class="t">    <span class="nam">Lf</span> <span class="op">+=</span> <span class="nam">l1</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t100" class="pln"><span class="n"><a href="#t100">100</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t101" class="pln"><span class="n"><a href="#t101">101</a></span><span class="t">    <span class="com"># Ajout de tous les &#233;l&#233;ments de l2 qui ne sont d&#233;j&#224; pas dans l1</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t102" class="run"><span class="n"><a href="#t102">102</a></span><span class="t">    <span class="key">for</span> <span class="nam">e</span> <span class="key">in</span> <span class="nam">l2</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">        <span class="com"># Initialisation variable locale</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t104" class="run"><span class="n"><a href="#t104">104</a></span><span class="t">        <span class="nam">pres</span> <span class="op">=</span> <span class="key">False</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t105" class="pln"><span class="n"><a href="#t105">105</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t106" class="pln"><span class="n"><a href="#t106">106</a></span><span class="t">        <span class="com"># On parcoure l1 pour savoir si l'&#233;l&#233;ment est dedans</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t107" class="run"><span class="n"><a href="#t107">107</a></span><span class="t">        <span class="key">for</span> <span class="nam">i</span> <span class="key">in</span> <span class="nam">l1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t108" class="run"><span class="n"><a href="#t108">108</a></span><span class="t">            <span class="key">if</span> <span class="nam">i</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">==</span> <span class="nam">e</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="key">and</span> <span class="nam">i</span><span class="op">[</span><span class="num">1</span><span class="op">]</span> <span class="op">==</span> <span class="nam">e</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t109" class="run"><span class="n"><a href="#t109">109</a></span><span class="t">                <span class="nam">pres</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t">        <span class="com"># Si la r&#233;ponse est non, on ajoute l'&#233;l&#233;ment &#224; Lf</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t">        <span class="key">if</span> <span class="nam">pres</span> <span class="op">==</span> <span class="key">False</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t113" class="run"><span class="n"><a href="#t113">113</a></span><span class="t">            <span class="nam">Lf</span> <span class="op">+=</span> <span class="op">[</span><span class="nam">e</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
->>>>>>> Tkinter
     <p id="t114" class="pln"><span class="n"><a href="#t114">114</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t115" class="pln"><span class="n"><a href="#t115">115</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t116" class="run"><span class="n"><a href="#t116">116</a></span><span class="t"><span class="key">def</span> <span class="nam">s_prive_liste</span><span class="op">(</span><span class="nam">l1</span><span class="op">,</span> <span class="nam">l2</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -279,7 +254,6 @@
     <p id="t201" class="pln"><span class="n"><a href="#t201">201</a></span><span class="t">    <span class="com"># Renvoie l'index du groupe</span>&nbsp;</span><span class="r"></span></p>
     <p id="t202" class="run"><span class="n"><a href="#t202">202</a></span><span class="t">    <span class="key">return</span> <span class="nam">len</span><span class="op">(</span><span class="nam">folder</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p id="t203" class="pln"><span class="n"><a href="#t203">203</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-<<<<<<< HEAD
     <p id="t204" class="pln"><span class="n"><a href="#t204">204</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t205" class="run"><span class="n"><a href="#t205">205</a></span><span class="t"><span class="key">def</span> <span class="nam">s_check_cell_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t206" class="run"><span class="n"><a href="#t206">206</a></span><span class="t">    <span class="nam">i</span> <span class="op">=</span> <span class="nam">s_get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>  <span class="com"># Non _adj</span>&nbsp;</span><span class="r"></span></p>
@@ -306,34 +280,6 @@
     <p id="t227" class="pln"><span class="n"><a href="#t227">227</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t228" class="pln"><span class="n"><a href="#t228">228</a></span><span class="t">    <span class="com"># Suppression groupe</span>&nbsp;</span><span class="r"></span></p>
     <p id="t229" class="run"><span class="n"><a href="#t229">229</a></span><span class="t">    <span class="key">del</span> <span class="nam">folder</span><span class="op">[</span><span class="nam">index_groupe</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-=======
-    <p id="t204" class="pln"><span class="n"><a href="#t204">204</a></span><span class="t">    <span class="com"># Renvoie l'index du groupe</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t205" class="run"><span class="n"><a href="#t205">205</a></span><span class="t">    <span class="key">return</span> <span class="nam">len</span><span class="op">(</span><span class="nam">folder</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t206" class="pln"><span class="n"><a href="#t206">206</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t207" class="pln"><span class="n"><a href="#t207">207</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t208" class="run"><span class="n"><a href="#t208">208</a></span><span class="t"><span class="key">def</span> <span class="nam">s_check_cell_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t209" class="run"><span class="n"><a href="#t209">209</a></span><span class="t">    <span class="nam">i</span> <span class="op">=</span> <span class="nam">s_get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>  <span class="com"># Non _adj</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t210" class="run"><span class="n"><a href="#t210">210</a></span><span class="t">    <span class="key">if</span> <span class="nam">i</span> <span class="op">==</span> <span class="key">None</span> <span class="key">and</span> <span class="nam">s_get_cell</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">)</span> <span class="op">==</span> <span class="num">1</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t211" class="run"><span class="n"><a href="#t211">211</a></span><span class="t">        <span class="key">return</span> <span class="nam">s_creer_groupe</span><span class="op">(</span><span class="op">[</span><span class="op">[</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">]</span><span class="op">]</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t212" class="run"><span class="n"><a href="#t212">212</a></span><span class="t">    <span class="key">return</span> <span class="nam">i</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t213" class="pln"><span class="n"><a href="#t213">213</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t214" class="pln"><span class="n"><a href="#t214">214</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t215" class="run"><span class="n"><a href="#t215">215</a></span><span class="t"><span class="key">def</span> <span class="nam">s_cell_delete</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t216" class="pln"><span class="n"><a href="#t216">216</a></span><span class="t">    <span class="str">""" Met &#224; jour le groupe apr&#232;s la suppression d'une cellule. """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t217" class="pln"><span class="n"><a href="#t217">217</a></span><span class="t">    <span class="com"># Fetch</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t218" class="run"><span class="n"><a href="#t218">218</a></span><span class="t">    <span class="nam">folder</span> <span class="op">=</span> <span class="nam">env</span><span class="op">[</span><span class="num">1</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t219" class="run"><span class="n"><a href="#t219">219</a></span><span class="t">    <span class="nam">index_groupe</span> <span class="op">=</span> <span class="nam">s_get_groupe</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">,</span> <span class="nam">env</span><span class="op">)</span>  <span class="com"># Non _adj</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t220" class="pln"><span class="n"><a href="#t220">220</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t221" class="pln"><span class="n"><a href="#t221">221</a></span><span class="t">    <span class="com"># print(env)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t222" class="pln"><span class="n"><a href="#t222">222</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t223" class="pln"><span class="n"><a href="#t223">223</a></span><span class="t">    <span class="com"># Cas sans groupe</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t224" class="run"><span class="n"><a href="#t224">224</a></span><span class="t">    <span class="key">if</span> <span class="nam">index_groupe</span> <span class="op">==</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t225" class="mis show_mis"><span class="n"><a href="#t225">225</a></span><span class="t">        <span class="key">return</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t226" class="pln"><span class="n"><a href="#t226">226</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t227" class="pln"><span class="n"><a href="#t227">227</a></span><span class="t">    <span class="com"># R&#233;cup&#233;ration cellules</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t228" class="run"><span class="n"><a href="#t228">228</a></span><span class="t">    <span class="nam">cells</span> <span class="op">=</span> <span class="nam">folder</span><span class="op">[</span><span class="nam">index_groupe</span><span class="op">]</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t229" class="run"><span class="n"><a href="#t229">229</a></span><span class="t">    <span class="nam">cells</span> <span class="op">=</span> <span class="nam">s_prive_liste</span><span class="op">(</span><span class="nam">cells</span><span class="op">,</span> <span class="op">[</span><span class="op">[</span><span class="nam">x</span><span class="op">,</span> <span class="nam">y</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
->>>>>>> Tkinter
     <p id="t230" class="pln"><span class="n"><a href="#t230">230</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t231" class="pln"><span class="n"><a href="#t231">231</a></span><span class="t">    <span class="com"># On recr&#233;e les groupes</span>&nbsp;</span><span class="r"></span></p>
     <p id="t232" class="run"><span class="n"><a href="#t232">232</a></span><span class="t">    <span class="key">for</span> <span class="nam">e</span> <span class="key">in</span> <span class="nam">cells</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -343,11 +289,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
-<<<<<<< HEAD
-            created at 2020-11-18 23:23 +0100
-=======
-            created at 2020-11-18 22:31 +0100
->>>>>>> Tkinter
+            created at 2020-11-18 23:53 +0100
         </p>
     </div>
 </div>

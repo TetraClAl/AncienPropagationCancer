@@ -2,6 +2,19 @@ import random as rd
 
 from data_main import *
 
+# regle(env,centre, p = None, q = None)
+
+
+def coord_centre(centre):
+    """permet d'obtenir les coordonnées de tous les sites occupant le centre 
+    centre est un quadruplet donnant les coordonées du centre du centre, la largeur selon x puis y"""
+    liste_centre = []
+    x, y, l, L = centre
+    for i in range(l):
+        for j in range(L):
+            liste_centre.append((x+i, y+j))
+    return liste_centre
+
 
 def choix_uniforme_site(env, x, y):
     """ choix uniforme site voisin au site en paramètre qui va devenir tumorale si il est libre
@@ -18,8 +31,15 @@ def choix_uniforme_site(env, x, y):
 
 def choix_uniforme(env, centre, p=None, q=None):
     """ applique la fonction choix_uniforme_site a tous les sites avec une cellule tumorale """
-    for i in range(len(env[0])):
-        for j in range(len(env[0][0])):  # on parcourt tout l'univers
-            # si site est occupé par cellule tumorale elle peut migrer
-            if get_cell(i, j, env[0]) == 1:
-                choix_uniforme_site(env, i, j)
+
+    vides, tumorales, astrocytes = tri_cells(
+        env[0])  # trie les sites selon leur type
+    # permet d'obtenir tous les sites qui sont dans le centre
+    centres = coord_centre(centre)
+
+    for site in tumorales:  # a toutes les cellules tumorales, on applique un choix uniforme
+        i, j = site
+        choix_uniforme_site(env, i, j)
+
+        if site in centres:  # on regènere le centre si besoin
+            set_cell(i, j, 1, env)
