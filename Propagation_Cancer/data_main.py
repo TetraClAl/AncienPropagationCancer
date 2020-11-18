@@ -1,5 +1,6 @@
 from data_base import *
 from data_advanced import *
+import copy
 
 # -------
 #
@@ -73,6 +74,11 @@ def create_env(univers):
     return [univers, []]
 
 
+def copy_env(env):
+    """ Crée une deepcopy de env. """
+    return copy.deepcopy(env)
+
+
 def get_groupe(x, y, env):
     """ Retourne l'index du groupe de la cellule (x, y). """
     return s_get_groupe(x, y, env)
@@ -113,3 +119,29 @@ def egal_liste(l1, l2, univers):
 
 def doubl_liste(l1, univers):
     """ Retourne une liste l1 sans doublons. """
+
+
+def tri_cells(univers):
+    "Renvoie les coordonnées des cellules triées par états, en trois listes"
+    n, m = np.shape(univers)
+    vides = []
+    tumorales = []
+    astrocytes = []
+    for x in range(n):
+        for y in range(m):
+            etat = get_cell(x, y, univers)
+            if etat == 0:
+                vides += [(x, y)]
+            elif etat == 1:
+                tumorales += [(x, y)]
+            else:
+                astrocytes += [(x, y)]
+    return vides, tumorales, astrocytes
+
+
+if __name__ == "__main__":
+    env1 = create_env(np.array([[0, 1, 0], [0, 1, 1], [1, 0, 0]]))
+    env2 = copy_env(env1)
+
+    env1[0][0, 0] = 1
+    print(env2[0][0, 0])

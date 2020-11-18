@@ -1,7 +1,18 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\romai\\Anaconda3\\python.exe"
 =======
     "python.pythonPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe"
 >>>>>>> d7effd2c6aa06fce0145bea4708415cd0b7dc78b
+=======
+<<<<<<< HEAD
+    "python.pythonPath": "C:\\Programmes info\\python.exe"
+=======
+    "python.pythonPath": "C:\\Users\\cs_fondation\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+>>>>>>> master
+=======
+    "python.pythonPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe"
+>>>>>>> master
+>>>>>>> 35042f91e36b0493148d007fd9942df67f2a6e74
 }
