@@ -22,6 +22,9 @@ def test_jonction_heterotype_site () :
     print ('premier test avec site vide ok')
 
 def test_jonction_heterotype () : 
-    # cas ou il vont uniquement dans les astrocytes 
-
-    # cas ou il vont uniquement dans les sites vides 
+    # premier test si on a pas de centre 
+    centre = (0, 0, 0,0)
+    univers = np.array ([[0, 1, 2], [1, 1, 1], [0, 1, 0]])
+    env = create_env(univers)
+    jonction_heterotype(env, centre,None, 0.6)
+    print (env[0])
