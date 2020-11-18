@@ -24,8 +24,3 @@ def test_init_univers():
                 res+=1
     assert res == 4
 
-if __name__ == "__main__":
-    test_ajout_astrocytes()
-    print("test 1 ok")
-    test_init_univers()
-    print("test 2 ok")

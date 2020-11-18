@@ -77,9 +77,9 @@ def test_global():
     # display_full(env[0])
     # plt.show()
 
-    # print(env)
+    print(env)
 
-    if use_fusion == False:
+    if get_fusion() == False:
         comp = [np.array([[0, 2, 2, 2, 0],
                           [0, 2, 1, 2, 0],
                           [0, 0, 2, 1, 2],
@@ -92,6 +92,7 @@ def test_global():
                           [0, 0, 2, 2, 2],
                           [0, 0, 0, 0, 0]]), [[[[1, 2]], [[0, 1], [0, 2], [0, 3], [1, 1], [1, 3], [2, 2]]], [[[2, 3]], [[1, 3], [2, 2], [2, 4], [3, 2], [3, 3], [3, 4]]]]]
 
+    print(comp)
     assert np.array_equal(comp[0], env[0])
 
     folder = env[1]
@@ -104,8 +105,9 @@ def test_global():
             assert folder[1][j] == folcomp[1][j]
 
 
-def super_test():
+def test_super_test():
     set_fusion(True)
     test_global()
     set_fusion(False)
     test_global()
+    set_fusion(True)
