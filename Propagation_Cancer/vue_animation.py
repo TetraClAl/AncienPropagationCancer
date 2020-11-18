@@ -1,12 +1,11 @@
 from vue_patch import *
 from vue_univers import *
-from controleur_initialisation import *
-from controleur_choix_uniforme import *
+from controleur_regle import *
 import copy as c
 from matplotlib.animation import FuncAnimation
 
 
-def omega(env, n, regle=choix_uniforme):
+def omega(env, centre, n, regle=choix_uniforme, p=None, q=None):
     """Renvoie la liste des états de l'univers pour n itérations. La regle est sous forme d'une fonction s'appliquant à un environnement"""
 
     omega = []
@@ -18,8 +17,8 @@ def omega(env, n, regle=choix_uniforme):
         # qui est ajoutée à omega
         omega += [univ]
 
-        # regle modifie directement environ. Comment ne pas modifier env lorsque l'on modifie environ?
-        regle(environ)
+        # regle modifie directement environ.
+        regle(environ, centre, p, q)
 
     return omega
 
@@ -71,10 +70,10 @@ def animation_update(i, omega, plane):
     return redim(plane)
 
 
-def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
+def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, fig=None, interv=300):
     """Animation de n générations en partant initialement de env. regle est une fonction qui modifie un env. Par défaut, l'affichage est activé avec show."""
 
-    omeg = omega(env, n, regle)
+    omeg = omega(env, centre, n, regle, p, q)
     a, b = np.shape(omeg[0])
 
     # création de la figure avec des axes adaptés à la taille de l'univers
@@ -82,7 +81,7 @@ def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
         fig = plt.figure()
 
     ax = fig.add_subplot(1, 1, 1)
-    plt.axis([-1, 2*(a+1), -1, sqrt(3)*b + 0.5])
+    plt.axis([-1, 2*a+0.5, -1, sqrt(3)*b + 0.5])
 
     # création du plan vide
     plane = create_plane(a, b, ax)

@@ -6,7 +6,7 @@ from vue_animation import *
 from controleur_choix_uniforme import *
 from vue_storage import *
 import copy as c
-from zzz_ghost_homotype import *
+from controleur_regle import *
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 
@@ -127,13 +127,8 @@ def test_display_cell():
 
 def display_homotype():
     centre = [7, 7, 2, 2]
-    env = init_univers(15, 15, centre)
-
-    def homotype(env): return dep_homotype_all(env, 0.1, centre)
+    env = init_univers(14, 14, centre)
 
     figure = plt.figure()
     plt.scatter(15, 7*sqrt(3))
-    animation(env, 100, regle=homotype, fig=figure, interv=1900)
-
-
-display_homotype()
+    animation(env, centre, 100, fig=figure, interv=1900)
