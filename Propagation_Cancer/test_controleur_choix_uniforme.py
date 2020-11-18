@@ -33,11 +33,10 @@ choix_uniforme_site (env, a, b)
 apres_site = count_cell(env[0])
 
 assert avant_site == apres_site
-print ('le nombre de cellules inféctées est stable apres modif site')
 
 avant = count_cell(env[0])
 choix_uniforme(env, centre)
 apres = count_cell(env[0])
 
 assert avant == apres 
-print ('le nombre de cellules inféctées est stable')
+

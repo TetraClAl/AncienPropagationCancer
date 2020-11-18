@@ -32,7 +32,7 @@ def jonction_heterotype_site (env,x ,y, q):
     """ q est la probabilité de choisir un site occupé par un astrocyte """
     u = rd.random()
 
-    if u < q : #la cellule va migrer vers un astrocyte   
+    if u < q : #la cellule va migrer vers un astrocyte si il y en a un 
         astro = get_adj_astrocyte (x, y, env)
         if astro != [] : 
             indice = rd.randint (0, len(astro) - 1)
@@ -41,7 +41,7 @@ def jonction_heterotype_site (env,x ,y, q):
             set_cell(a, b , 1, env)
             set_cell(x ,y, 0, env)
 
-    else : #elle migre vers un site vide 
+    else : #elle migre vers un site vide si il y en a un 
         vide = get_adj_vide (x, y, env)
         if vide != [] : 
             indice = rd. randint (0, len(vide) - 1)
@@ -51,10 +51,15 @@ def jonction_heterotype_site (env,x ,y, q):
             set_cell(x ,y, 0, env)
 
 
-def jonction_heterotype (env, centre,q ) : 
+def jonction_heterotype (env, centre,p=None,q ) : 
     """ applique la fonction jonciton_heterotype_site a tous les sites avec une cellule tumorale """
-    for i in range (len(env[0])) : 
-        for j in range (len(env[0][0])) : #on parcourt tout l'univers
 
-            if get_cell (i,j, env[0]) == 1 : #si site est occupé par cellule tumorale elle peut migrer
-                jonction_heterotype_site (env, i ,j,q)
+    vides, tumorales, astrocytes = tri_cells(env[0]) #trie les sites selon leur type
+    centres = coord_centre(centre) #permet d'obtenir tous les sites qui sont dans le centre
+
+    for site in tumorales : # a toutes les cellules tumorales, on applique une jonction heterotype
+        i,j = site 
+        jonciton_heterotype (env, i ,j, q)
+
+        if site in centres : # on regènere le centre si besoin 
+            set_cell(i,j,1,env)
