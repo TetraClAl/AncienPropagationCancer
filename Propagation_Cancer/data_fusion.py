@@ -97,7 +97,7 @@ def prive_tri(l1, l2):
         while compstrict_coord(l1[index1], l2[index2]):
             index2 += 1
             if index2 >= len(l2):
-                return Ls
+                return Ls + l1[index1:]
 
         # Si égalité on supprime l'élément, sinon on augmente l'index
         if egal_coord(l1[index1], l2[index2]) == False:

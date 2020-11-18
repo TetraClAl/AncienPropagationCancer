@@ -1,6 +1,8 @@
 from pytest import *
 from data_advanced import *
 from controleur_initialisation import *
+from vue_univers import display_full
+from matplotlib import pyplot as plt
 
 
 def test_voisin_dir():
@@ -72,11 +74,23 @@ def test_global():
         display_univers(univers)
         plt.show()"""
 
-    comp = [np.array([[0, 2, 2, 2, 0],
-                      [0, 2, 1, 2, 0],
-                      [0, 0, 2, 1, 2],
-                      [0, 0, 2, 2, 2],
-                      [0, 0, 0, 0, 0]]), [[[[2, 3]], [[3, 3], [3, 2], [2, 2], [1, 3], [2, 4], [3, 4]]], [[[1, 2]], [[2, 2], [1, 1], [0, 1], [0, 2], [0, 3], [1, 3]]]]]
+    # display_full(env[0])
+    # plt.show()
+
+    # print(env)
+
+    if use_fusion == False:
+        comp = [np.array([[0, 2, 2, 2, 0],
+                          [0, 2, 1, 2, 0],
+                          [0, 0, 2, 1, 2],
+                          [0, 0, 2, 2, 2],
+                          [0, 0, 0, 0, 0]]), [[[[2, 3]], [[3, 3], [3, 2], [2, 2], [1, 3], [2, 4], [3, 4]]], [[[1, 2]], [[2, 2], [1, 1], [0, 1], [0, 2], [0, 3], [1, 3]]]]]
+    else:
+        comp = [np.array([[0, 2, 2, 2, 0],
+                          [0, 2, 1, 2, 0],
+                          [0, 0, 2, 1, 2],
+                          [0, 0, 2, 2, 2],
+                          [0, 0, 0, 0, 0]]), [[[[1, 2]], [[0, 1], [0, 2], [0, 3], [1, 1], [1, 3], [2, 2]]], [[[2, 3]], [[1, 3], [2, 2], [2, 4], [3, 2], [3, 3], [3, 4]]]]]
 
     assert np.array_equal(comp[0], env[0])
 
@@ -88,3 +102,10 @@ def test_global():
             assert folder[0][j] == folcomp[0][j]
         for j in range(len(folder[1])):
             assert folder[1][j] == folcomp[1][j]
+
+
+def super_test():
+    set_fusion(True)
+    test_global()
+    set_fusion(False)
+    test_global()
