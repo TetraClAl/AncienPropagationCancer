@@ -18,3 +18,10 @@ def display_center(x, y, fig):
     xp, yp = plane_coord(x, y)
     plt.scatter(xp, yp, s=4)
     plt.text(xp, yp, "(" + str(x) + ","+str(y)+")")
+
+
+# couleur en RGB, selon l'état:
+# #0 = astrocyte = blanc
+# 2= astrocyte = gris
+# 1= tumorale = rouge
+couleur = [(1.0, 1.0, 1.0, 1.0), (1.0, 0.0, 0.0, 1.0), (0.5, 0.5, 0.5, 1.0)]

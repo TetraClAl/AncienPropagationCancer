@@ -2,6 +2,9 @@ from controleur_initialisation import *
 from vue_cell import *
 from vue_patch import *
 from vue_univers import *
+from vue_animation import *
+from controleur_choix_uniforme import *
+import copy as c
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 
@@ -47,7 +50,64 @@ def display_vue_patch():
 def exemple_display_full():
     univ = np.eye(10)
     for x in range(10):
-    univ[0][x] = 1
-    univ[5][x] = 2
+        univ[0][x] = 1
+        univ[5][x] = 2
     # print(univ)
     display_full(univ)
+
+
+def display_uniforme():
+    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+    env = create_env(univers)
+    omeg = omega(env, 3)
+    print(omeg)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 3, 1)
+    plt.axis([-1, 10, -1, 10])
+    plane = init_plane(omeg[0], ax1)
+
+    ax2 = fig.add_subplot(1, 3, 2)
+    plt.axis([-1, 10, -1, 10])
+    plane2 = init_plane(omeg[0], ax2)
+    refresh_plane(plane2, omeg[1])
+
+    ax3 = fig.add_subplot(1, 3, 3)
+    plt.axis([-1, 10, -1, 10])
+    plane3 = init_plane(omeg[0], ax3)
+    refresh_plane(plane3, omeg[2])
+
+    plt.show()
+
+
+def display_plane():
+    fig = plt.figure(figsize=(6, 6))
+
+    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+    env = create_env(univers)
+    omeg = omega(env, 2)
+
+    ax1 = fig.add_subplot(1, 2, 1)
+    plt.axis([-1, 10, -1, 10])
+    plane = init_plane(omeg[0], ax1)
+
+    ax2 = fig.add_subplot(1, 2, 2)
+    plt.axis([-1, 10, -1, 10])
+    plane2 = init_plane(omeg[0], ax2)
+    refresh_plane(plane2, omeg[1])
+
+    print(omeg)
+    plt.show()
+
+
+# display_plane()
+
+
+def display_animation():
+    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+    env = create_env(univers)
+
+    animation(env, 10)
+
+
+display_animation()
