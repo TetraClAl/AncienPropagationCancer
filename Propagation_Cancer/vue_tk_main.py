@@ -3,6 +3,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from data_main import *
 from vue_univers import *
+from vue_animation import animation
 
 """app = tk.Tk()"""
 
@@ -23,6 +24,8 @@ class App():
 
         menusimulation = tk.Menu(mainmenu, tearoff=0)
         menusimulation.add_command(label="Générer", command=self.generate)
+        menusimulation.add_command(
+            label="Démo animation", command=self.animation)
 
         mainmenu.add_cascade(label="Fichier", menu=menufichier)
         mainmenu.add_cascade(label="Simulation", menu=menusimulation)
@@ -78,6 +81,32 @@ class App():
     def quit(self):
         self.root.destroy()
         exit()
+
+    def animation(self):
+        self.canvas.grid_forget()
+        del self.graph
+
+        univers = create_univers(5, 5)
+        env = [univers, []]
+
+        x1 = 0
+        y1 = 4
+        x2 = 2
+        y2 = 2
+        x3 = 2
+        y3 = 3
+
+        set_cell(x1, y1, 1, env)
+        set_cell(x2, y2, 1, env)
+        set_cell(x3, y3, 1, env)
+
+        fig = plt.figure()
+
+        animation(env, 100, show=False, fig=fig, interv=300)
+
+        self.graph = FigureCanvasTkAgg(fig, master=self.root)
+        self.canvas = self.graph.get_tk_widget()
+        self.canvas.grid(row=0, column=0)
 
     def generate(self):
 
