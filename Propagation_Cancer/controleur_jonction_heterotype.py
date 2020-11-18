@@ -55,11 +55,11 @@ def jonction_heterotype (env, centre,p,q ) :
     """ applique la fonction jonciton_heterotype_site a tous les sites avec une cellule tumorale """
 
     vides, tumorales, astrocytes = tri_cells(env[0]) #trie les sites selon leur type
-    centres = coord_centre(centre) #permet d'obtenir tous les sites qui sont dans le centre
+    c = coord_centre(centre) #permet d'obtenir tous les sites qui sont dans le centre
 
     for site in tumorales : # a toutes les cellules tumorales, on applique une jonction heterotype
         i,j = site 
-        jonction_heterotype (env, i ,j, q)
+        jonction_heterotype_site(env, i ,j, q)
 
-        if site in centres : # on regènere le centre si besoin 
+        if site in c : # on regènere le centre si besoin 
             set_cell(i,j,1,env)

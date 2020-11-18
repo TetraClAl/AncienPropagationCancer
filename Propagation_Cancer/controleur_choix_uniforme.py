@@ -6,13 +6,13 @@ from data_main import *
 
 def coord_centre(centre) : 
     """permet d'obtenir les coordonnées de tous les sites occupant le centre 
-    centre est un quadruplant donnant les coordonées du centre du centre, la largeur selon x puis y"""
-    centres = []
+    centre est un quadruplet donnant les coordonées du centre du centre, la largeur selon x puis y"""
+    liste_centre = []
     x,y,l, L = centre
     for i in range (l) : 
         for j in range (L) : 
-            centres.append ((x+i, y+j))
-    return centres
+            liste_centre.append ((x+i, y+j))
+    return liste_centre
 
 
 def choix_uniforme_site (env, x, y) :  
