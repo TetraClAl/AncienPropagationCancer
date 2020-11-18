@@ -1,5 +1,6 @@
 from data_base import *
 from data_advanced import *
+import copy
 
 # -------
 #
@@ -71,6 +72,11 @@ def check_list(l1, univers):
 def create_env(univers):
     """ Crée un environnement de taille (x, y). """
     return [univers, []]
+
+
+def copy_env(env):
+    """ Crée une deepcopy de env. """
+    return copy.deepcopy(env)
 
 
 def get_groupe(x, y, env):
