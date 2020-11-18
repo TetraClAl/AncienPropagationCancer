@@ -4,12 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from data_main import *
 from vue_univers import *
 from vue_animation import animation
-
-"""app = tk.Tk()"""
-
-"""fig = Figure(figsize=(6, 4), dpi=96)
-ax = fig.add_subplot(111)
-ax.plot(range(10), [5, 4, 2, 6, 9, 8, 7, 1, 2, 3])"""
+from tkinter import messagebox
 
 
 class App():
@@ -25,7 +20,7 @@ class App():
         menusimulation = tk.Menu(mainmenu, tearoff=0)
         menusimulation.add_command(label="Générer", command=self.generate)
         menusimulation.add_command(
-            label="Démo animation", command=self.animation)
+            label="Démo animation", command=self.tk_animation)
 
         mainmenu.add_cascade(label="Fichier", menu=menufichier)
         mainmenu.add_cascade(label="Simulation", menu=menusimulation)
@@ -38,98 +33,52 @@ class App():
         self.root.wm_title("Propagation cancer")
         button.grid(row=0, column=1)
 
-        univers = create_univers(5, 5)
-
-        env = [univers, []]
-
-        x1 = 0
-        y1 = 4
-        x2 = 2
-        y2 = 2
-        x3 = 2
-        y3 = 3
-
-        set_cell(x1, y1, 1, env)
-        set_cell(x2, y2, 1, env)
-        set_cell(x3, y3, 1, env)
-
-        set_cell(x2, y2, 0, env)
-
-        index = get_groupe(x1, y1, env)
-        adj = env[1][index][1]
-        for e in adj:
-            univers[e[0], e[1]] = 2
-
-        index = get_groupe(x3, y3, env)
-        adj = env[1][index][1]
-        for e in adj:
-            univers[e[0], e[1]] = 2
-
         fig = plt.figure(figsize=(6, 6))
-        ax = plt.subplot(1, 1, 1)
-        plt.axis([-1, 10, -1, 10])
-        display_full(univers, ax, False)
-
-        self.graph = FigureCanvasTkAgg(fig, master=self.root)
-        self.canvas = self.graph.get_tk_widget()
-        self.canvas.grid(row=0, column=0)
+        self.graph_display(fig)
 
         self.create_menu()
+        self.root.protocol("WM_DELETE_WINDOW", quit)
 
         self.root.mainloop()
 
     def quit(self):
-        self.root.destroy()
-        exit()
+        if messagebox.askokcancel("Quitter", "Voulez-vous quitter ?"):
+            self.root.destroy()
+            exit()
 
-    def animation(self):
-        self.canvas.grid_forget()
-        del self.graph
-
-        univers = create_univers(5, 5)
-        env = [univers, []]
-
-        x1 = 0
-        y1 = 4
-        x2 = 2
-        y2 = 2
-        x3 = 2
-        y3 = 3
-
-        set_cell(x1, y1, 1, env)
-        set_cell(x2, y2, 1, env)
-        set_cell(x3, y3, 1, env)
-
-        fig = plt.figure()
-
-        animation(env, 100, show=False, fig=fig, interv=300)
-
-        self.graph = FigureCanvasTkAgg(fig, master=self.root)
+    def graph_display(self, fig):
+        self.graph = FigureCanvasTkAgg(fig, self.root)
         self.canvas = self.graph.get_tk_widget()
         self.canvas.grid(row=0, column=0)
 
+    def tk_animation(self):
+        self.canvas.grid_forget()
+
+        univers = create_univers(20, 20)
+        env = [univers, []]
+        set_cell(0, 4, 1, env)
+        set_cell(2, 2, 1, env)
+        set_cell(2, 3, 1, env)
+
+        fig = plt.figure()
+        self.graph_display(fig)
+        self.hold_animation = animation(
+            env, 100, show=False, fig=fig, interv=300)
+
     def generate(self):
+        self.canvas.grid_forget()
 
         univers = create_univers(5, 5)
         env = [univers, []]
+        set_cell(0, 4, 1, env)
+        set_cell(2, 2, 1, env)
+        set_cell(2, 3, 1, env)
 
-        x1 = 0
-        y1 = 4
-        x2 = 2
-        y2 = 2
-        x3 = 2
-        y3 = 3
-
-        set_cell(x1, y1, 1, env)
-        set_cell(x2, y2, 1, env)
-        set_cell(x3, y3, 1, env)
-
-        index = get_groupe(x1, y1, env)
+        index = get_groupe(0, 4, env)
         adj = env[1][index][1]
         for e in adj:
             univers[e[0], e[1]] = 2
-
-        index = get_groupe(x3, y3, env)
+        index = get_groupe(2, 3, env)
         adj = env[1][index][1]
         for e in adj:
             univers[e[0], e[1]] = 2
@@ -139,9 +88,7 @@ class App():
         plt.axis([-1, 10, -1, 10])
         display_full(univers, ax, False)
 
-        self.graph = FigureCanvasTkAgg(fig, master=self.root)
-        self.canvas = self.graph.get_tk_widget()
-        self.canvas.grid(row=0, column=0)
+        self.graph_display(fig)
 
 
 app = App()

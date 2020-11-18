@@ -5,6 +5,8 @@ from controleur_choix_uniforme import *
 import copy as c
 from matplotlib.animation import FuncAnimation
 
+import tkinter as tk
+
 
 def omega(env, n, regle=choix_uniforme):
     """Renvoie la liste des états de l'univers pour n itérations. La regle est sous forme d'une fonction s'appliquant à un environnement"""
@@ -92,8 +94,10 @@ def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
     def f_init(): return animation_update(0, omeg, plane)
 
     # Animation. blit: ne change que les elements modifiés d'une frame à l'autre
-    ani = FuncAnimation(fig, f_update, frames=(
-        n), init_func=f_init, blit=True, interval=interv, repeat=True)
+    ani = FuncAnimation(fig, f_update, n, init_func=f_init,
+                        blit=False, interval=interv, repeat=True)
 
     if show:
         plt.show()
+
+    return ani

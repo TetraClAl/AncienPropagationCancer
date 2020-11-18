@@ -1,9 +1,12 @@
 from data_main import *
 from vue_univers import *
+from vue_animation import *
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
 
 
 univers = create_univers(5, 5)
-
 env = [univers, []]
 
 x1 = 0
@@ -17,19 +20,17 @@ set_cell(x1, y1, 1, env)
 set_cell(x2, y2, 1, env)
 set_cell(x3, y3, 1, env)
 
-set_cell(x2, y2, 0, env)
+"""
+fig = plt.figure()
 
-index = get_groupe(x1, y1, env)
-adj = env[1][index][1]
-for e in adj:
-    univers[e[0], e[1]] = 2
+animation(env, 100, show=True, fig=fig, interv=300)"""
 
-index = get_groupe(x3, y3, env)
-adj = env[1][index][1]
-for e in adj:
-    univers[e[0], e[1]] = 2
+fig = plt.Figure()
+root = tk.Tk()
 
-fig = plt.figure(figsize=(6, 6))
-ax = plt.subplot(1, 1, 1)
-plt.axis([-1, 10, -1, 10])
-display_full(univers, ax, False)
+canvas = FigureCanvasTkAgg(fig, master=root)
+canvas.get_tk_widget().grid(column=0, row=0)
+
+animation(env, 100, show=False, fig=fig, interv=300)
+
+tk.mainloop()
