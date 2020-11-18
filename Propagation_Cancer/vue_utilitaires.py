@@ -2,6 +2,7 @@ from math import *
 from matplotlib import *
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+from matplotlib.testing.decorators import check_figures_equal
 from data_main import *
 import numpy as np
 

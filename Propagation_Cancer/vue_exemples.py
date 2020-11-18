@@ -4,6 +4,7 @@ from vue_patch import *
 from vue_univers import *
 from vue_animation import *
 from controleur_choix_uniforme import *
+from vue_storage import *
 import copy as c
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
@@ -80,6 +81,9 @@ def display_uniforme():
     plt.show()
 
 
+# display_uniforme()
+
+
 def display_plane():
     fig = plt.figure(figsize=(6, 6))
 
@@ -110,4 +114,11 @@ def display_animation():
     animation(env, 10)
 
 
-display_animation()
+# display_animation()
+
+def test_display_cell():
+    fig_test = plt.figure()
+    ax2 = plt.subplot()
+    plt.axis([-1, 10, -1, 10])
+    display_cell(0, 1, univers, ax2)
+    assert check_figures_equal(fig_ref, fig_test)
