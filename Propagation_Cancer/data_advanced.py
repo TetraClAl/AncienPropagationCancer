@@ -89,9 +89,16 @@ def s_union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
     # Cas fusion
     if use_fusion:
+<<<<<<< HEAD
         return union_tri(l1, l2)
+=======
+        # print("fusion")
+        return union_tri(l1, l2)
+    # else:
+        # print("legacy")
+>>>>>>> Tkinter
 
-    # Initialisation
+        # Initialisation
     Lf = []
     Lf += l1
 
