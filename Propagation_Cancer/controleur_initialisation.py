@@ -1,11 +1,9 @@
-from data_main import *
-import numpy as np
-from random import randint
-from random import sample
 from controleur_regen import regen_centre
+from controleur_utilitaires import *
 
 
 def ajout_astrocytes(env, Pocc):
+    """Crée la couche statique d'astrocytes sains, aléatoirement avec une densité Pocc"""
     (a, b) = np.shape(env[0])
 
     # nombre réel d'astrocytes
@@ -25,7 +23,7 @@ def ajout_astrocytes(env, Pocc):
 
 
 def init_univers(tx, ty, centre, Pocc=0.5, init_tumor=None, cx=None, cy=None):
-
+    """Initie un environnement de taille tx*ty avec Pocc caractérisant la couche d'astrocyte. init_tumor rajoute une forme en plus du centre, dont le coin haut gauche est placée en (cx,cy)"""
     # centre est une liste de 4 valeurs : les coordonnées du point en haut à gauche du centre,
     # la longeur selon x et selon y
     # cx et cy sont les coordonnées du point a partir du quel on introduit la forme init_tumor

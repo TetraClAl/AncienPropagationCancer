@@ -1,5 +1,6 @@
 from controleur_initialisation import *
 from controleur_regen import *
+from controleur_utilitaires import *
 from random import choice
 from random import random
 
@@ -68,7 +69,7 @@ def dep_homotype_all(env, centre, p=None, q=None):
         dep_homotype(env, i, j, p)
 
         # on régénère le centre en cas de besoin
-        if [i, j] in liste_centre(centre):
+        if (i, j) in liste_centre(centre):
             regen_centre(env, centre)
 
 ### Prise en compte des groupes de cellules tumorales ###
@@ -127,5 +128,5 @@ def dep_homotype_groupe_all(env, centre, p=None, q=None):
         dep_homotype_groupe(env, i, j, p)
 
         # on régénère le centre en cas de besoin
-        if [i, j] in liste_centre(centre):
+        if (i, j) in liste_centre(centre):
             regen_centre(env, centre)

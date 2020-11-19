@@ -85,7 +85,7 @@ def display_uniforme():
     env = init_univers(6, 6, centre)
     omeg = omega(env, centre, 3)
     # print(omeg)
-    print(liste_centre(centre))
+    # print(liste_centre(centre))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(1, 3, 1)
@@ -107,7 +107,7 @@ def display_uniforme():
 
 
 # OK
-display_uniforme()
+# display_uniforme()
 
 
 def display_plane():
@@ -133,7 +133,7 @@ def display_plane():
 # display_plane()
 
 
-def display_homotype():
+def display_homotype_anime():
     centre = [7, 7, 2, 2]
     env = init_univers(14, 14, centre)
 
@@ -141,7 +141,8 @@ def display_homotype():
     plt.scatter(15, 7*sqrt(3))
 
     animation(env, centre, 100, dep_homotype_all,
-              p=0.5, fig=figure, interv=1900)
+              p=1, fig=figure, interv=1900)
+
 
 # OK
-#display_homotype()
+# display_homotype_anime()

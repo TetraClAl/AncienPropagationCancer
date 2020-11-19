@@ -1,4 +1,5 @@
 from data_main import *
+from controleur_utilitaires import *
 
 
 def regen_centre(env, centre):
@@ -15,7 +16,7 @@ def regen_centre(env, centre):
                 set_cell(dx + i, dy + j, 1, env)
 
 
-def liste_centre(centre):
+def liste_centre_(centre):
     "Liste des coordonnées des cellules du centre"
     dx = centre[0]  # coordonnée en x du coin en haut à gauche du centre
     dy = centre[1]  # coordonnée en y du coin en haut à gauche du centre
