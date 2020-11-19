@@ -19,7 +19,7 @@ def display_full(env, centre, ax, show=True):
     v, t, a = tri_cells(univers)
 
     # coordonnées des cellules du centre
-    c = liste_centre(env, centre)
+    c = liste_centre(centre)
 
     # les derniers objets ajoutés sont affichés au premier plan.
     # On veut les tumorales sur les astrocytes sur les vides
@@ -43,8 +43,8 @@ def display_full(env, centre, ax, show=True):
         plt.show()
 
 
-if __name__ == "__main__":
-    univers = np.array([[1, 1, 2, 1, 1], [1, 0, 1, 0, 1], [2, 1, 2, 1, 2]])
-    display_univers(univers, 1)
-    display_full(univers)
-    plt.show()
+# if __name__ == "__main__":
+#     univers = np.array([[1, 1, 2, 1, 1], [1, 0, 1, 0, 1], [2, 1, 2, 1, 2]])
+#     display_univers(univers, 1)
+#     display_full(univers)
+#     plt.show()
