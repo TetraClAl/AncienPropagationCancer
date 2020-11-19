@@ -1,6 +1,7 @@
 from controleur_choix_uniforme import *
 from controleur_initialisation import *
 from controleur_regen import *
+from controleur_regle_homotype import *
 
 # regroupe les fichiers de controleur pour les importer
 

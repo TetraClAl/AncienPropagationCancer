@@ -1,12 +1,9 @@
-from controleur_initialisation import *
-from vue_cell import *
-from vue_patch import *
 from vue_univers import *
 from vue_animation import *
-from controleur_choix_uniforme import *
+from controleur_regle import *
 from vue_storage import *
 import copy as c
-from controleur_regle import *
+
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 
@@ -86,11 +83,13 @@ def display_uniforme():
 
 
 def display_plane():
-    fig = plt.figure(figsize=(6, 6))
+    fig = plt.figure()
+    #plt.scatter(15, 7*sqrt(3))
 
-    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
-    env = create_env(univers)
-    omeg = omega(env, 2)
+    centre = [7, 7, 2, 2]
+    env = init_univers(14, 14, centre)
+    omeg = omega(env, centre, 100, dep_homotype_all,
+                 p=0.5)
 
     ax1 = fig.add_subplot(1, 2, 1)
     plt.axis([-1, 10, -1, 10])
@@ -101,7 +100,7 @@ def display_plane():
     plane2 = init_plane(omeg[0], ax2)
     refresh_plane(plane2, omeg[1])
 
-    print(omeg)
+    # print(omeg)
     plt.show()
 
 
@@ -131,4 +130,9 @@ def display_homotype():
 
     figure = plt.figure()
     plt.scatter(15, 7*sqrt(3))
-    animation(env, centre, 100, fig=figure, interv=1900)
+
+    animation(env, centre, 100, dep_homotype_all,
+              p=0.5, fig=figure, interv=1900)
+
+
+display_homotype()
