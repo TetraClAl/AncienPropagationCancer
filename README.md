@@ -34,7 +34,7 @@ Fonctionnalité 2.3 : jonction homotype
 
 Fonctionnalité 2.4 : animation
 
-### Sprint 3
+### Sprint 3 : Finalisation MVP
 Fonctionnalité 3.1 :gérer jonction homotype/heterotype
 
 Fonctionnalité 3.2 : mettre le programme bout à bout
@@ -42,7 +42,7 @@ Fonctionnalité 3.2 : mettre le programme bout à bout
 Fonctionnalité 3.3 : gérer l'enregistrement des simulations
 
 
-### Sprint 4 
+### Sprint 4 : interface et statistique 
 Fonctionnalité 4.1 : interface Tkinter 
 
 Fonctionnalité 4.2 : statistiques sur nos résultats 
@@ -56,9 +56,11 @@ Lundi après-midi : sprint 1 et peut-être entamer sprint 2 ?
 Mardi : Forum et optionnellement continuer le sprint 2  
 
 Mercredi matin : sprint 2 
+
 Mercredi après-midi : sprint 3 
 
 Jeudi matin : sprint 4
+
 Jeudi après-midi : finir sprint 4 et préparer livrable
 
 ## Journal de bord  
