@@ -8,6 +8,7 @@ from tkinter import messagebox
 from vue_tk_savewin import *
 from vue_tk_param import *
 import tkinter.ttk as ttk
+from controleur_couplage import jonction_duo
 
 
 class App():
@@ -69,16 +70,22 @@ class App():
         centre = (int(self.parametres.champ_coord_X.get()), int(self.parametres.champ_coord_Y.get()),
                   int(self.parametres.champ_size_X.get()), int(self.parametres.champ_size_Y.get()))
 
-        univers = create_univers(
-            int(self.parametres.taille_x), int(self.parametres.taille_y))
-        env = [univers, []]
+        proportion = self.parametres.proportion
+        env = init_univers(int(self.parametres.taille_x),
+                           int(self.parametres.taille_y), centre, Pocc=proportion, init_tumor=None, cx=None, cy=None)
 
-        rule = dep_homotype_all
+        rule_str = self.parametres.champ_modele.get()
+        p = float(self.parametres.champ_p.get())
+        q = float(self.parametres.champ_p.get())
+        if rule_str == 'Homotype':
+            q = None
+        if rule_str == 'Hétérotype':
+            p = None
 
         fig = plt.figure()
         self.graph_display(fig)
         self.hold_animation = animation(
-            env, centre, 100, rule, float(self.parametres.champ_p.get()), float(self.parametres.champ_p.get()), show=False, fig=fig, interv=int(self.parametres.champ_interv.get()))
+            env, centre, int(self.parametres.champ_iter.get()), jonction_duo, p, q, show=False, fig=fig, interv=int(self.parametres.champ_interv.get()))
 
     def save_simulation(self):
         # S'il n'y a aucune animation
