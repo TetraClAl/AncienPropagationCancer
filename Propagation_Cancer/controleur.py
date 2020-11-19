@@ -3,7 +3,7 @@ from controleur_initialisation import *
 from controleur_regen import *
 from controleur_regle_homotype import *
 from controleur_jonction_heterotype import *
-
+from controleur_couplage import *
 # regroupe les fichiers de controleur pour les importer
 
 # Les fonctions de regles:

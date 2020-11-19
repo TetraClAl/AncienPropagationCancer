@@ -71,7 +71,7 @@ def animation_update(i, omega, plane, centre):
     return redim(plane)
 
 
-def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, fig=None, interv=300):
+def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, fig=None, interv=1000):
     """Animation de n générations en partant initialement de env. regle est une fonction qui modifie un env. Par défaut, l'affichage est activé avec show."""
 
     omeg = omega(env, centre, n, regle, p, q)
@@ -93,7 +93,7 @@ def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, f
 
     # Animation. blit: ne change que les elements modifiés d'une frame à l'autre
     ani = FuncAnimation(fig, f_update, n, init_func=f_init,
-                        blit=False, interval=interv, repeat=True)
+                        blit=False, interval=interv, repeat=False)
 
     if show:
         plt.show()
