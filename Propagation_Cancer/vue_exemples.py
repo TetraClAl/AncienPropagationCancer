@@ -32,15 +32,19 @@ def display_init():
     fig = plt.figure(figsize=(6, 6))
     ax = plt.subplot(1, 1, 1)
     # plt.axis([-1, 10, -1, 10])
-    x = 3
-    y = 0
+    x = 1
+    y = 1
+
     centre = [x, y, 2, 2]
 
-    env = init_univers(6, 6, centre)
+    env = init_univers(6, 6, centre, Pocc=0)
 
-    display_univers(univers, ax)
+    plane = create_plane(env, ax)
+    refresh_plane(plane, env[0], centre)
+    #display_univers(univers, ax)
     display_center(x, y, fig)
     plt.show()
+
 
 # display_init()
 
@@ -87,23 +91,23 @@ def display_uniforme():
     ax1 = fig.add_subplot(1, 3, 1)
     plt.axis([-1, 10, -1, 10])
     plane = create_plane(env, ax1)
-    # refresh_plane(plane, omeg[0],centre)
+    refresh_plane(plane, omeg[0], centre)
 
     ax2 = fig.add_subplot(1, 3, 2)
     plt.axis([-1, 10, -1, 10])
     plane2 = create_plane(env, ax2)
-    refresh_plane(plane2, omeg[0], centre)
+    refresh_plane(plane2, omeg[1], centre)
 
     ax3 = fig.add_subplot(1, 3, 3)
     plt.axis([-1, 10, -1, 10])
     plane3 = create_plane(env, ax3)
-    refresh_plane(plane3, omeg[1], centre)
+    refresh_plane(plane3, omeg[2], centre)
 
     plt.show()
 
 
 # OK
-# display_uniforme()
+display_uniforme()
 
 
 def display_plane():
