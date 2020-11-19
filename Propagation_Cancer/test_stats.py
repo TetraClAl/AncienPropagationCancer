@@ -1,14 +1,14 @@
 from stats import *
 
-def test_taux_occupation_tumeur():
+def test_taux_occ_tumeur():
     env = init_univers(5, 5, (1, 1, 3, 3))
-    t = taux_occupation_tumeur(env[0])
+    t = taux_occ_tumeur(env[0])
     res = 9/25
     assert t == res
 
-def test_taux_occupation_astrocytes():
+def test_taux_occ_astrocytes():
     env = init_univers(4, 4, (0, 0, 0, 0))
-    t = taux_occupation_astrocytes(env[0])
+    t = taux_occ_astro(env[0])
     assert t == 0.5
 
 def test_distance():
@@ -33,9 +33,9 @@ def test_plus_grande_distance():
 
 
 if __name__ == "__main__":
-    test_taux_occupation_tumeur()
+    test_taux_occ_tumeur()
     print("test taux tumeur ok")
-    test_taux_occupation_astrocytes()
+    test_taux_occ_astrocytes()
     print("test taux astro ok")
     test_distance()
     print("test distance ok")
