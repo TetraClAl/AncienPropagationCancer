@@ -22,9 +22,9 @@ class App():
                                 command=self.save_simulation)
 
         menusimulation = tk.Menu(mainmenu, tearoff=0)
-        menusimulation.add_command(label="Générer", command=self.generate)
+        #menusimulation.add_command(label="Générer", command=self.generate)
         menusimulation.add_command(
-            label="Démo animation", command=self.tk_animation)
+            label="Générer", command=self.tk_animation)
 
         mainmenu.add_cascade(label="Fichier", menu=menufichier)
         mainmenu.add_cascade(label="Simulation", menu=menusimulation)
@@ -66,16 +66,17 @@ class App():
     def tk_animation(self):
         self.canvas.grid_forget()
 
-        univers = create_univers(20, 20)
+        centre = (self.parametres.champ_coord_X, self.parametres.champ_coord_Y,
+                  self.parametres.champ_size_X, self.parametres.champ_size_Y)
+
+        univers = create_univers(
+            self.parametres.taille_x, self.parametres.taille_y)
         env = [univers, []]
-        set_cell(0, 4, 1, env)
-        set_cell(2, 2, 1, env)
-        set_cell(2, 3, 1, env)
 
         fig = plt.figure()
         self.graph_display(fig)
         self.hold_animation = animation(
-            env, 100, show=False, fig=fig, interv=300)
+            env, centre, 100, rule, self.parametres.champ_p, self.parametres.champ_p, show=False, fig=fig, interv=300)
 
     def save_simulation(self):
         # S'il n'y a aucune animation
