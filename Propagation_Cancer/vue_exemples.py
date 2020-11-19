@@ -16,6 +16,7 @@ def display_vue_cell():
         display_cell(0, y, univers, ax)
         display_center(1, y, fig)
     plt.show()
+# display_vue_cell()
 
 
 def display_init():
@@ -26,11 +27,13 @@ def display_init():
     y = 0
     centre = [x, y, 2, 2]
 
-    univers = init_univers(6, 6, centre)
+    env = init_univers(6, 6, centre)
 
     display_univers(univers, ax)
     display_center(x, y, fig)
     plt.show()
+
+# display_init()
 
 
 def display_vue_patch():
@@ -49,6 +52,7 @@ def display_vue_patch():
 
 
 def exemple_display_full():
+    """affiche un univers avec une couche d'astrocytes, et un centre de 4 cellules"""
     centre = [2, 2, 2, 2]
     env = init_univers(6, 6, centre)
 
@@ -62,6 +66,7 @@ def exemple_display_full():
 
 
 def display_uniforme():
+    """affiche 3 images: l univers vide; l'univers avec des astrocytes et le centre; l'univers avec des astros, le centre, et des cellules ayant migré (choix uniforme)"""
     centre = [2, 2, 2, 2]
     env = init_univers(6, 6, centre)
     omeg = omega(env, centre, 3)
@@ -72,17 +77,17 @@ def display_uniforme():
     ax1 = fig.add_subplot(1, 3, 1)
     plt.axis([-1, 10, -1, 10])
     plane = create_plane(env, centre, ax1)
-    #refresh_plane(plane, omeg[0],centre)
+    # refresh_plane(plane, omeg[0],centre)
 
     ax2 = fig.add_subplot(1, 3, 2)
     plt.axis([-1, 10, -1, 10])
     plane2 = create_plane(env, centre, ax2)
-    refresh_plane(plane2, omeg[1], centre)
+    refresh_plane(plane2, omeg[0], centre)
 
     ax3 = fig.add_subplot(1, 3, 3)
     plt.axis([-1, 10, -1, 10])
     plane3 = create_plane(env, centre, ax3)
-    refresh_plane(plane3, omeg[2], centre)
+    refresh_plane(plane3, omeg[1], centre)
 
     plt.show()
 
@@ -92,7 +97,7 @@ display_uniforme()
 
 def display_plane():
     fig = plt.figure()
-    #plt.scatter(15, 7*sqrt(3))
+    # plt.scatter(15, 7*sqrt(3))
 
     centre = [7, 7, 2, 2]
     env = init_univers(14, 14, centre)
@@ -101,14 +106,14 @@ def display_plane():
 
     ax1 = fig.add_subplot(1, 2, 1)
     plt.axis([-1, 10, -1, 10])
-    plane = init_plane(omeg[0], ax1)
+    plane = create_plane(env, centre, ax1)
 
     ax2 = fig.add_subplot(1, 2, 2)
     plt.axis([-1, 10, -1, 10])
-    plane2 = init_plane(omeg[0], ax2)
-    refresh_plane(plane2, omeg[1])
+    plane2 = create_plane(env, centre, ax2)
+    refresh_plane(plane2, omeg[0], centre)
 
-    # print(omeg)
+    print(omeg)
     plt.show()
 
 

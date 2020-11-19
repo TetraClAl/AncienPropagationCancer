@@ -51,7 +51,8 @@ def refresh_plane(plane, univers, centre):
     c = liste_centre(centre)
     for x in range(n):
         for y in range(m):
-            etat = get_cell(x, y, univers) + 2 * int([x, y] in c)
+            etat = get_cell(x, y, univers)
+            #if [x,y] in c: etat+= 2
             patch = plane[x][y]
             coul = patch.get_facecolor()
             if coul != couleur[etat]:
@@ -67,9 +68,9 @@ def redim(plane):
     return liste
 
 
-def animation_update(i, omega, plane):
+def animation_update(i, omega, plane, centre):
     """ renvoie la liste des patch pour l'état i """
-    refresh_plane(plane, omega[i])
+    refresh_plane(plane, omega[i], centre)
     return redim(plane)
 
 
@@ -90,8 +91,8 @@ def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, f
     plane = create_plane(env, centre, ax)
 
     # Fonctions d'animation, update:  int -> liste de patches
-    def f_update(i): return animation_update(i, omeg, plane)
-    def f_init(): return animation_update(0, omeg, plane)
+    def f_update(i): return animation_update(i, omeg, plane, centre)
+    def f_init(): return animation_update(0, omeg, plane, centre)
 
     # Animation. blit: ne change que les elements modifiés d'une frame à l'autre
     ani = FuncAnimation(fig, f_update, n, init_func=f_init,
