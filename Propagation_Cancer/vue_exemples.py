@@ -1,12 +1,17 @@
-from controleur_initialisation import *
-from vue_cell import *
-from vue_patch import *
 from vue_univers import *
 from vue_animation import *
-from controleur_choix_uniforme import *
+
 from vue_storage import *
-import copy as c
-from zzz_ghost_homotype import *
+
+# #Pour Ibtissam:
+# l'exemple interressant est display_uniforme.
+# Les exemples avec OK marchent.
+# tu n'as qu'à decommenter l'appel à la fonction dans la ligne qui suit et lancer le fichier pour l'afficher.
+# si tu decommentes plusieurs appels, plusieurs fenetres s'ouvriront les unes après les autres (en fermant la précédente)
+# tu peux surement enregistrer les figures qui apparaissent pour les rajouter ensuite au diapo.
+# n'hésite pas à lancer plusieurs fois le meme exemple pour avoir des configurations intérressantes (à cause des proba)
+# je ferais aussi des exemples pour les regles hetérotype et couplée.
+
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
 
@@ -20,21 +25,28 @@ def display_vue_cell():
         display_cell(0, y, univers, ax)
         display_center(1, y, fig)
     plt.show()
+# display_vue_cell()
 
 
 def display_init():
     fig = plt.figure(figsize=(6, 6))
     ax = plt.subplot(1, 1, 1)
     # plt.axis([-1, 10, -1, 10])
-    x = 3
-    y = 0
+    x = 1
+    y = 1
+
     centre = [x, y, 2, 2]
 
-    univers = init_univers(6, 6, centre)
+    env = init_univers(6, 6, centre, Pocc=0)
 
-    display_univers(univers, ax)
+    plane = create_plane(env, ax)
+    refresh_plane(plane, env[0], centre)
+    #display_univers(univers, ax)
     display_center(x, y, fig)
     plt.show()
+
+
+# display_init()
 
 
 def display_vue_patch():
@@ -42,98 +54,95 @@ def display_vue_patch():
     ax = plt.subplot(1, 1, 1)
     plt.axis([-1, 10, -1, 10])
     univers = np.array([[0, 1, 2], [1, 0, 1], [2, 1, 2]])
-    for x in range(3):
-        for y in range(3):
-            display_patch(x, y, univers, ax)
-            display_center(1, y, fig)
+    c = [(0, 1)]
+    display_patch(0, 0, 3, ax)
+    display_patch(0, 1, 1, ax)
+    display_patch(1, 0, 1, ax)
     plt.show()
 
 
+# display_vue_patch()
+
+
 def exemple_display_full():
-    univ = np.eye(10)
-    for x in range(10):
-        univ[0][x] = 1
-        univ[5][x] = 2
-    # print(univ)
-    display_full(univ)
+    """affiche un univers avec une couche d'astrocytes, et un centre de 4 cellules"""
+    centre = [2, 2, 2, 2]
+    env = init_univers(6, 6, centre)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 1, 1)
+    plt.axis([-1, 10, -1, 10])
+    display_full(env, centre, ax1)
+
+
+# OK
+# exemple_display_full()
 
 
 def display_uniforme():
-    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
-    env = create_env(univers)
-    omeg = omega(env, 3)
-    print(omeg)
+    """affiche 3 images: l univers vide; l'univers avec des astrocytes et le centre; l'univers avec des astros, le centre, et des cellules ayant migré (choix uniforme)"""
+    centre = [2, 2, 2, 2]
+    env = init_univers(6, 6, centre)
+    omeg = omega(env, centre, 3)
+    # print(omeg)
+    # print(liste_centre(centre))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(1, 3, 1)
     plt.axis([-1, 10, -1, 10])
-    plane = init_plane(omeg[0], ax1)
+    plane = create_plane(env, ax1)
+    refresh_plane(plane, omeg[0], centre)
 
     ax2 = fig.add_subplot(1, 3, 2)
     plt.axis([-1, 10, -1, 10])
-    plane2 = init_plane(omeg[0], ax2)
-    refresh_plane(plane2, omeg[1])
+    plane2 = create_plane(env, ax2)
+    refresh_plane(plane2, omeg[1], centre)
 
     ax3 = fig.add_subplot(1, 3, 3)
     plt.axis([-1, 10, -1, 10])
-    plane3 = init_plane(omeg[0], ax3)
-    refresh_plane(plane3, omeg[2])
+    plane3 = create_plane(env, ax3)
+    refresh_plane(plane3, omeg[2], centre)
 
     plt.show()
 
 
+# OK
 # display_uniforme()
 
 
 def display_plane():
-    fig = plt.figure(figsize=(6, 6))
+    fig = plt.figure()
+    # plt.scatter(15, 7*sqrt(3))
 
-    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
-    env = create_env(univers)
-    omeg = omega(env, 2)
+    centre = [3, 3, 2, 2]
+    env = init_univers(7, 7, centre)
+    # omeg = omega(env, centre, 2, dep_homotype_all, p = 0.5)
 
     ax1 = fig.add_subplot(1, 2, 1)
     plt.axis([-1, 10, -1, 10])
-    plane = init_plane(omeg[0], ax1)
+    plane = create_plane(env, ax1)
 
     ax2 = fig.add_subplot(1, 2, 2)
     plt.axis([-1, 10, -1, 10])
-    plane2 = init_plane(omeg[0], ax2)
-    refresh_plane(plane2, omeg[1])
+    plane2 = create_plane(env, ax2)
+    refresh_plane(plane2, env[0], centre)
 
-    print(omeg)
     plt.show()
 
-
+# OK
 # display_plane()
 
 
-def display_animation():
-    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
-    env = create_env(univers)
-
-    animation(env, 10)
-
-
-# display_animation()
-
-def test_display_cell():
-    fig_test = plt.figure()
-    ax2 = plt.subplot()
-    plt.axis([-1, 10, -1, 10])
-    display_cell(0, 1, univers, ax2)
-    assert check_figures_equal(fig_ref, fig_test)
-
-
-def display_homotype():
+def display_homotype_anime():
     centre = [7, 7, 2, 2]
-    env = init_univers(15, 15, centre)
-
-    def homotype(env): return dep_homotype_all(env, 0.1, centre)
+    env = init_univers(14, 14, centre)
 
     figure = plt.figure()
     plt.scatter(15, 7*sqrt(3))
-    animation(env, 100, regle=homotype, fig=figure, interv=1900)
+
+    animation(env, centre, 100, dep_homotype_all,
+              p=1, fig=figure, interv=1900)
 
 
-display_homotype()
+# OK
+display_homotype_anime()

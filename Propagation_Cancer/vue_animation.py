@@ -1,12 +1,11 @@
-from vue_patch import *
+from vue_utilitaires import *
 from vue_univers import *
-from controleur_initialisation import *
-from controleur_choix_uniforme import *
-import copy as c
+
+
 from matplotlib.animation import FuncAnimation
 
 
-def omega(env, n, regle=choix_uniforme):
+def omega(env, centre, n, regle=choix_uniforme, p=None, q=None):
     """Renvoie la liste des états de l'univers pour n itérations. La regle est sous forme d'une fonction s'appliquant à un environnement"""
 
     omega = []
@@ -18,16 +17,17 @@ def omega(env, n, regle=choix_uniforme):
         # qui est ajoutée à omega
         omega += [univ]
 
-        # regle modifie directement environ. Comment ne pas modifier env lorsque l'on modifie environ?
-        regle(environ)
+        # regle modifie directement environ.
+        regle(environ, centre, p, q)
 
     return omega
 
 
-def create_plane(n, m, ax):
-    """crée un pavage de sites vides sur ax, de taille n*m et renvoie le tableau des patches correspondants"""
-    plane = []
+def create_plane(env, ax):
+    """crée un pavage de sites vides sur ax, avec le centre mis en valeur, et renvoie le tableau des patches correspondants"""
 
+    n, m = np.shape(env[0])
+    plane = []
     for x in range(n):
         line = []
         for y in range(m):
@@ -43,13 +43,13 @@ def create_plane(n, m, ax):
     return plane
 
 
-def refresh_plane(plane, univers):
+def refresh_plane(plane, univers, centre):
     "Ajuste la couleur des patches en fonction des nouveaux états de l'univers"
     n, m = np.shape(univers)
 
     for x in range(n):
         for y in range(m):
-            etat = get_cell(x, y, univers)
+            etat = get_color(x, y, univers, centre)
             patch = plane[x][y]
             coul = patch.get_facecolor()
             if coul != couleur[etat]:
@@ -65,16 +65,16 @@ def redim(plane):
     return liste
 
 
-def animation_update(i, omega, plane):
+def animation_update(i, omega, plane, centre):
     """ renvoie la liste des patch pour l'état i """
-    refresh_plane(plane, omega[i])
+    refresh_plane(plane, omega[i], centre)
     return redim(plane)
 
 
-def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
+def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, fig=None, interv=300):
     """Animation de n générations en partant initialement de env. regle est une fonction qui modifie un env. Par défaut, l'affichage est activé avec show."""
 
-    omeg = omega(env, n, regle)
+    omeg = omega(env, centre, n, regle, p, q)
     a, b = np.shape(omeg[0])
 
     # création de la figure avec des axes adaptés à la taille de l'univers
@@ -82,18 +82,20 @@ def animation(env, n, regle=choix_uniforme, show=True, fig=None, interv=300):
         fig = plt.figure()
 
     ax = fig.add_subplot(1, 1, 1)
-    plt.axis([-1, 2*(a+1), -1, sqrt(3)*b + 0.5])
+    plt.axis([-1, 2*a+0.5, -1, sqrt(3)*b + 0.5])
 
     # création du plan vide
-    plane = create_plane(a, b, ax)
+    plane = create_plane(env, ax)
 
     # Fonctions d'animation, update:  int -> liste de patches
-    def f_update(i): return animation_update(i, omeg, plane)
-    def f_init(): return animation_update(0, omeg, plane)
+    def f_update(i): return animation_update(i, omeg, plane, centre)
+    def f_init(): return animation_update(0, omeg, plane, centre)
 
     # Animation. blit: ne change que les elements modifiés d'une frame à l'autre
-    ani = FuncAnimation(fig, f_update, frames=(
-        n), init_func=f_init, blit=True, interval=interv, repeat=True)
+    ani = FuncAnimation(fig, f_update, n, init_func=f_init,
+                        blit=False, interval=interv, repeat=True)
 
     if show:
         plt.show()
+
+    return ani

@@ -1,5 +1,6 @@
 from data_base import *
 from data_advanced import *
+import copy
 
 # -------
 #
@@ -70,7 +71,18 @@ def check_list(l1, univers):
 
 def create_env(univers):
     """ Crée un environnement de taille (x, y). """
-    return [univers, []]
+    env = [univers, []]
+
+    for i in range(len(univers)):
+        for j in range(len(univers)):
+            s_check_cell_groupe(i, j, env)
+
+    return env
+
+
+def copy_env(env):
+    """ Crée une deepcopy de env. """
+    return copy.deepcopy(env)
 
 
 def get_groupe(x, y, env):
@@ -117,7 +129,7 @@ def doubl_liste(l1, univers):
 
 def tri_cells(univers):
     "Renvoie les coordonnées des cellules triées par états, en trois listes"
-    n, m = np.shape(univers)
+    (n, m) = np.shape(univers)
     vides = []
     tumorales = []
     astrocytes = []
@@ -131,3 +143,12 @@ def tri_cells(univers):
             else:
                 astrocytes += [(x, y)]
     return vides, tumorales, astrocytes
+
+
+if __name__ == "__main__":
+    env1 = create_env(np.array([[0, 1, 0], [0, 1, 1], [1, 0, 0]]))
+    env2 = copy_env(env1)
+
+    env1[0][0, 0] = 1
+    print(env2[0][0, 0])
+    print(tri_cells(np.array([[0, 1, 0], [0, 1, 1], [1, 0, 0]])))

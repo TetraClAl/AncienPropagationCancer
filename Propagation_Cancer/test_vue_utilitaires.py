@@ -11,3 +11,10 @@ def test_plane_coord():
 def test_display_center():
     # vérifié sur une figure matplotlib
     assert True
+
+
+def test_get_color():
+    centre = [1, 1, 2, 2]
+    env = init_univers(4, 4, centre)
+
+    assert get_color(1, 1, env[0], centre) == 3

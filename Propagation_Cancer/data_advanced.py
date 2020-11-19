@@ -1,11 +1,25 @@
 from data_import import *
 from data_base import *
-from data_advanced import *
+from data_fusion import *
 
 # Note to self (TODO) : utiliser des listes de coordonnées triées selon l'ordre alphabétique pourrait permettre d'accélérer les fusions de listes en éléminant les doublons.
 # Les propriétés de ces éléments (coordonnées ne se répétant pas) pourraient permettre d'obtenir un algo très rapide.
 
+use_fusion = True
+
+
+def set_fusion(data):
+    global use_fusion
+    use_fusion = data
+
+
+def get_fusion():
+    global use_fusion
+    return use_fusion
+
+
 # ----- Ce code pourrait nécessiter du refactoring
+
 
 hex_directions = [
     [[+1,  0], [0, -1], [-1, -1],
@@ -36,6 +50,12 @@ def s_get_adj(x, y, univers):
     for direction in range(6):
         x1, y2 = voisin_dir([x, y], direction)
         Lc += [[x1, y2]]
+
+    # Cas fusion
+    if use_fusion:
+        return tri_liste(s_check_list(Lc, univers))
+
+    # Retour par défaut
     return s_check_list(Lc, univers)
 
 # ----- Fin de la section cible refactoring
@@ -67,7 +87,11 @@ def s_get_groupe(x, y, env):
 
 def s_union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
-    # Initialisation
+    # Cas fusion
+    if use_fusion:
+        return union_tri(l1, l2)
+
+        # Initialisation
     Lf = []
     Lf += l1
 
@@ -90,7 +114,13 @@ def s_union_liste(l1, l2):
 
 
 def s_prive_liste(l1, l2):
-    """ Retourne la liste l1 privée de l2. """
+    """ Retourne la liste l1 privée de l2. Tri aussi l1 """
+    # Cas fusion
+    if use_fusion:
+        l1 = prive_tri(l1, l2)
+        # print(l1)
+        return l1
+
     # Initialisation boucle while
     i = 0
 
@@ -111,6 +141,9 @@ def s_prive_liste(l1, l2):
         else:
             i += 1  # En cas de suppression, pas besoin d'incrémenter
 
+    # Retour
+    return l1
+
 
 def s_fusion_groupe(index_groupe1, index_groupe2, env):
     """ Fait fusionner deux groupes. """
@@ -126,11 +159,13 @@ def s_fusion_groupe(index_groupe1, index_groupe2, env):
     groupe1[0] = s_union_liste(groupe1[0], groupe2[0])
     groupe1[1] = s_union_liste(groupe1[1], groupe2[1])
 
+    # print("----")
     #print("Composants : ", groupe1[0])
     #print("Adjacents : ", groupe1[1])
 
     # Suppressions des adjacentes superposées
-    s_prive_liste(groupe1[1], groupe1[0])
+    groupe1[1] = s_prive_liste(groupe1[1], groupe1[0])
+    #print("Maj Adjacents : ", groupe1[1])
 
     # Suppression du groupe 2
     del folder[index_groupe2]
@@ -140,6 +175,8 @@ def s_creer_groupe(cellules, env):
     # Fetch
     folder = env[1]
     univers = env[0]
+    if use_fusion:
+        cellules = tri_liste(cellules)
     groupe = [cellules, []]
     adj = groupe[1]
 
@@ -167,7 +204,7 @@ def s_creer_groupe(cellules, env):
 
 def s_check_cell_groupe(x, y, env):
     i = s_get_groupe(x, y, env)  # Non _adj
-    if i == None:
+    if i == None and s_get_cell(x, y, env[0]) == 1:
         return s_creer_groupe([[x, y]], env)
     return i
 
@@ -178,13 +215,15 @@ def s_cell_delete(x, y, env):
     folder = env[1]
     index_groupe = s_get_groupe(x, y, env)  # Non _adj
 
+    # print(env)
+
     # Cas sans groupe
     if index_groupe == None:
         return
 
     # Récupération cellules
     cells = folder[index_groupe][0]
-    s_prive_liste(cells, [[x, y]])
+    cells = s_prive_liste(cells, [[x, y]])
 
     # Suppression groupe
     del folder[index_groupe]
