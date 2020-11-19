@@ -7,7 +7,7 @@ from vue_animation import *
 
 # Modifier les paramètres suivants
 p = None
-q = None
+q = 1
 pocc = 0.5
 
 
