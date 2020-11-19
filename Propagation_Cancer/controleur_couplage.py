@@ -24,8 +24,8 @@ def jonct_duo_evaluation(env, x, y):
     return vides, astros, homo_yes, homo_no
 
 
-def jonct_duo_move(env, x, y, p=None, q=None):
-    """Bouge la cellule (x,y) avec les paramètres p et q. Lorsqu'ils sont à None, les règles respectives ne sont pas prise en compte. Si les deux sont à None, la règle par défaut est le choix uniforme"""
+def jonct_duo_move(env, x, y, p, q, print_proba=False):
+    """Bouge la cellule (x,y) avec les paramètres p et q . Lorsqu'ils sont à None, les règles respectives ne sont pas prise en compte. Si les deux sont à None, la règle par défaut est le choix uniforme"""
     vides, astros, homo_yes, homo_no = jonct_duo_evaluation(env, x, y)
 
     # choix de la liste de sites eligibles
@@ -55,8 +55,12 @@ def jonct_duo_move(env, x, y, p=None, q=None):
         possibles = union_liste(homo, hetero)
     migration_aléatoire(x, y, possibles, env)
 
+    if print_proba:
+        # indique la proba tirée
+        print(t)
 
-def jonction_duo(env, centre, p, q):
+
+def jonction_duo(env, centre, p=None, q=None):
     tumorales = tri_cells(env[0])[1]
 
     for (x, y) in tumorales:  # a toutes les cellules tumorales, on applique la règle

@@ -2,6 +2,7 @@ import random as rd
 import numpy as np
 from random import randint
 from random import sample
+from random import choice
 from data_main import *
 
 

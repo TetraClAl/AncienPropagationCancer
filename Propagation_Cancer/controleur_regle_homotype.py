@@ -34,7 +34,7 @@ def migration_aléatoire(i, j, l, env):
             set_cell(i, j, 0, env)  # on remet un 0 sur le site laissé vacant
 
 
-def dep_homotype(env, i, j, p):
+def dep_homotype(env, i, j, p, print_proba=False):
     """ déplace la cellule (i, j) suivant la règle homotype """
     # p est la probabilité d'aller sur une cellule possédant un voisin infecté : p>0.5 traduit une attraction entre cellules tumorales
     voisins = get_adj(i, j, env[0])
@@ -55,6 +55,9 @@ def dep_homotype(env, i, j, p):
 
         else:  # migration sur une cellule isolée
             migration_aléatoire(i, j, l2, env)
+
+        if print_proba:
+            print(t)
 
 
 def dep_homotype_all(env, centre, p=None, q=None):
@@ -91,7 +94,7 @@ def liste_voisins_groupe(liste, g, env):
     return res
 
 
-def dep_homotype_groupe(env, i, j, p):
+def dep_homotype_groupe(env, i, j, p, print_proba=False):
     """ déplace la cellule (i, j) suivant la règle homotype prenant en compte les groupes """
     g = get_groupe(i, j, env)
 
@@ -114,6 +117,8 @@ def dep_homotype_groupe(env, i, j, p):
 
         else:  # migration sur une cellule isolée
             migration_aléatoire(i, j, l2, env)
+    if print_proba:
+        print(t)
 
 
 def dep_homotype_groupe_all(env, centre, p=None, q=None):

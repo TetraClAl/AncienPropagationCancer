@@ -1,5 +1,13 @@
 from controleur_regle_homotype import *
 import numpy as np
+from pytest import *
+
+
+def test_classe_voisins():
+    centre = [2, 2, 3, 1]
+    c = liste_centre(centre)
+    env = init_univers(6, 6, centre, Pocc=0)
+    l1, l2 = classe_voisins(c, env)
 
 
 def test_dep_homotype():

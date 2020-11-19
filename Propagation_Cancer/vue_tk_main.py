@@ -76,7 +76,7 @@ class App():
 
         rule_str = self.parametres.champ_modele.get()
         p = float(self.parametres.champ_p.get())
-        q = float(self.parametres.champ_p.get())
+        q = float(self.parametres.champ_q.get())
         if rule_str == 'Homotype':
             q = None
         if rule_str == 'Hétérotype':
