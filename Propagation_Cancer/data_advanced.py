@@ -89,10 +89,7 @@ def s_union_liste(l1, l2):
     """ Fait une union de deux listes de cellules. """
     # Cas fusion
     if use_fusion:
-        # print("fusion")
         return union_tri(l1, l2)
-    # else:
-        # print("legacy")
 
         # Initialisation
     Lf = []
@@ -207,7 +204,7 @@ def s_creer_groupe(cellules, env):
 
 def s_check_cell_groupe(x, y, env):
     i = s_get_groupe(x, y, env)  # Non _adj
-    if i == None:
+    if i == None and s_get_cell(x, y, env[0]) == 1:
         return s_creer_groupe([[x, y]], env)
     return i
 

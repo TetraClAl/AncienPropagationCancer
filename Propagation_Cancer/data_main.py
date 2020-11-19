@@ -71,7 +71,13 @@ def check_list(l1, univers):
 
 def create_env(univers):
     """ Crée un environnement de taille (x, y). """
-    return [univers, []]
+    env = [univers, []]
+
+    for i in range(len(univers)):
+        for j in range(len(univers)):
+            s_check_cell_groupe(i, j, env)
+
+    return env
 
 
 def copy_env(env):
