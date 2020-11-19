@@ -2,9 +2,14 @@
 ### Découpage travail 
 
 ## Sprint 0 : description du projet
+
 Fonctionnalité 0.1 : créer dépôt git et groupe teams 
 
 Fonctionalité 0.2 : définition du MVP et choix de modélisation 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 Fonctionnalité 0.3 : planning et mise en forme du ReadMe 
 
 Fonctionnalité 0.4 : fonction utilitaire essentielle 
@@ -32,7 +37,8 @@ Fonctionnalité 2.3 : jonction homotype
 
 Fonctionnalité 2.4 : animation
 
-## Sprint 3 
+## Sprint 3
+Fonctionnalité 3.1 : gérer l'enregistrement des simulations
 
 ## Sprint 4 
 

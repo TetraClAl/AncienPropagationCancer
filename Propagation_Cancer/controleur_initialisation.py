@@ -41,13 +41,13 @@ def init_univers(tx, ty, centre, Pocc = 0.5, init_tumor = None, cx = None, cy = 
             cy = (ty - b)//2
 
         # on implémente la tumeur initiale (ie la tumeur à t=0)
-    
+        #print(init_tumor)
         for i in range(a):
             for j in range(b):
                 set_cell(i + cx, j + cy, get_cell(i, j, init_tumor), env)
 
     # on vérifie que le centre est bien composé de cellules tumorales
-    regen_centre(env, centre[0], centre[1], centre[2], centre[3])
+    regen_centre(env, centre)
 
     #on ajoute les astrocytes
     return ajout_astrocytes(env, Pocc)

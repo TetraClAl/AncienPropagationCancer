@@ -9,7 +9,14 @@ use_fusion = True
 
 
 def set_fusion(data):
+    global use_fusion
     use_fusion = data
+
+
+def get_fusion():
+    global use_fusion
+    return use_fusion
+
 
 # ----- Ce code pourrait nécessiter du refactoring
 
@@ -84,7 +91,7 @@ def s_union_liste(l1, l2):
     if use_fusion:
         return union_tri(l1, l2)
 
-    # Initialisation
+        # Initialisation
     Lf = []
     Lf += l1
 
@@ -197,7 +204,7 @@ def s_creer_groupe(cellules, env):
 
 def s_check_cell_groupe(x, y, env):
     i = s_get_groupe(x, y, env)  # Non _adj
-    if i == None:
+    if i == None and s_get_cell(x, y, env[0]) == 1:
         return s_creer_groupe([[x, y]], env)
     return i
 

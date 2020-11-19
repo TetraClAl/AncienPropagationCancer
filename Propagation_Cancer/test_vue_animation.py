@@ -1,11 +1,11 @@
 from pytest import *
 from vue_animation import *
 
-
+"""
 univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
 env = create_env(univers)
 
-lis = omega(env, 2)
+lis = omega(env, (1, 1, 1, 1), 2)
 
 fig = plt.figure(figsize=(6, 6))
 ax1 = fig.add_subplot(1, 1, 1)
@@ -60,3 +60,4 @@ def test_animation_update():
     col = up[0].get_facecolor()
     etat = lis[1][0][0]
     assert col == couleur[etat]
+"""
