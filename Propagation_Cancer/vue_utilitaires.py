@@ -25,9 +25,18 @@ def display_center(x, y, fig):
     plt.text(xp, yp, "(" + str(x) + ","+str(y)+")")
 
 
+def get_color(x, y, univers, centre):
+    c = liste_centre(centre)
+    if [x, y] in c:
+        return 3
+    else:
+        return get_cell(x, y, univers)
 # couleur en RGB, mi-transparente, selon l'état:
-# #0 = astrocyte = blanc
-# 2= astrocyte = gris
+# 0 = vide = blanc
 # 1= tumorale = rouge
+# 2= astrocyte = gris
+# 3= tumorale centrale = rouge foncé
+
+
 couleur = [(1.0, 1.0, 1.0, 0.5), (1.0, 0.0, 0.0, 0.5),
           (0.5, 0.5, 0.5, 0.5), (1.0, 0.4117647058823529, 0.7058823529411765, 1.0)]
