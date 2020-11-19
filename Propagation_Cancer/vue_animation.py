@@ -23,17 +23,16 @@ def omega(env, centre, n, regle=choix_uniforme, p=None, q=None):
     return omega
 
 
-def create_plane(env, centre, ax):
+def create_plane(env, ax):
     """crée un pavage de sites vides sur ax, avec le centre mis en valeur, et renvoie le tableau des patches correspondants"""
 
     n, m = np.shape(env[0])
     plane = []
-    c = liste_centre(centre)
     for x in range(n):
         line = []
         for y in range(m):
             # site vide
-            patch = create_patch(x, y, 0, centre=[x, y] in c)
+            patch = create_patch(x, y, 0)
             # ajouté à la figure
             ax.add_patch(patch)
             # ajouté au tableau
@@ -48,11 +47,9 @@ def refresh_plane(plane, univers, centre):
     "Ajuste la couleur des patches en fonction des nouveaux états de l'univers"
     n, m = np.shape(univers)
 
-    c = liste_centre(centre)
     for x in range(n):
         for y in range(m):
-            etat = get_cell(x, y, univers)
-            #if [x,y] in c: etat+= 2
+            etat = get_color(x, y, univers, centre)
             patch = plane[x][y]
             coul = patch.get_facecolor()
             if coul != couleur[etat]:
@@ -88,7 +85,7 @@ def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, f
     plt.axis([-1, 2*a+0.5, -1, sqrt(3)*b + 0.5])
 
     # création du plan vide
-    plane = create_plane(env, centre, ax)
+    plane = create_plane(env, ax)
 
     # Fonctions d'animation, update:  int -> liste de patches
     def f_update(i): return animation_update(i, omeg, plane, centre)
