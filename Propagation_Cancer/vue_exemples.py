@@ -1,8 +1,7 @@
 from vue_univers import *
 from vue_animation import *
-from controleur_regle import *
+
 from vue_storage import *
-import copy as c
 
 
 univers = np.array([[1, 1, 2], [1, 1, 1], [2, 1, 2]])
@@ -39,47 +38,56 @@ def display_vue_patch():
     ax = plt.subplot(1, 1, 1)
     plt.axis([-1, 10, -1, 10])
     univers = np.array([[0, 1, 2], [1, 0, 1], [2, 1, 2]])
-    for x in range(3):
-        for y in range(3):
-            display_patch(x, y, univers, ax)
-            display_center(1, y, fig)
+    c = [(0, 1)]
+    display_patch(0, 0, 0, ax)
+    display_patch(0, 1, 1, ax, centre=((0, 1) in c))
+    display_patch(1, 0, 1, ax)
     plt.show()
 
 
+# display_vue_patch()
+
+
 def exemple_display_full():
-    univ = np.eye(10)
-    for x in range(10):
-        univ[0][x] = 1
-        univ[5][x] = 2
-    # print(univ)
-    display_full(univ)
+    centre = [2, 2, 2, 2]
+    env = init_univers(6, 6, centre)
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 1, 1)
+    plt.axis([-1, 10, -1, 10])
+    display_full(env, centre, ax1)
+
+
+# exemple_display_full()
 
 
 def display_uniforme():
-    univers = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
-    env = create_env(univers)
-    omeg = omega(env, 3)
-    print(omeg)
+    centre = [2, 2, 2, 2]
+    env = init_univers(6, 6, centre)
+    omeg = omega(env, centre, 3)
+    # print(omeg)
+    print(liste_centre(centre))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(1, 3, 1)
     plt.axis([-1, 10, -1, 10])
-    plane = init_plane(omeg[0], ax1)
+    plane = create_plane(env, centre, ax1)
+    #refresh_plane(plane, omeg[0],centre)
 
     ax2 = fig.add_subplot(1, 3, 2)
     plt.axis([-1, 10, -1, 10])
-    plane2 = init_plane(omeg[0], ax2)
-    refresh_plane(plane2, omeg[1])
+    plane2 = create_plane(env, centre, ax2)
+    refresh_plane(plane2, omeg[1], centre)
 
     ax3 = fig.add_subplot(1, 3, 3)
     plt.axis([-1, 10, -1, 10])
-    plane3 = init_plane(omeg[0], ax3)
-    refresh_plane(plane3, omeg[2])
+    plane3 = create_plane(env, centre, ax3)
+    refresh_plane(plane3, omeg[2], centre)
 
     plt.show()
 
 
-# display_uniforme()
+display_uniforme()
 
 
 def display_plane():
@@ -135,4 +143,4 @@ def display_homotype():
               p=0.5, fig=figure, interv=1900)
 
 
-display_homotype()
+# display_homotype()

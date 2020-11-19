@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 from matplotlib.testing.decorators import check_figures_equal
 from data_main import *
 import numpy as np
+import copy as c
+import tkinter as tk
+
+from controleur import *
 
 
 def plane_coord(x, y):
@@ -21,8 +25,9 @@ def display_center(x, y, fig):
     plt.text(xp, yp, "(" + str(x) + ","+str(y)+")")
 
 
-# couleur en RGB, selon l'état:
+# couleur en RGB, mi-transparente, selon l'état:
 # #0 = astrocyte = blanc
 # 2= astrocyte = gris
 # 1= tumorale = rouge
-couleur = [(1.0, 1.0, 1.0, 0.5), (1.0, 0.0, 0.0, 0.5), (0.5, 0.5, 0.5, 0.5)]
+couleur = [(1.0, 1.0, 1.0, 0.5), (1.0, 0.0, 0.0, 0.5),
+           (0.5, 0.5, 0.5, 0.5), (1.0, 0.0, 0.0, 1)]

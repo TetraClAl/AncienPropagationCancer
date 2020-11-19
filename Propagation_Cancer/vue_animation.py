@@ -1,10 +1,8 @@
-from vue_patch import *
+from vue_utilitaires import *
 from vue_univers import *
-from controleur_regle import *
-import copy as c
-from matplotlib.animation import FuncAnimation
 
-import tkinter as tk
+
+from matplotlib.animation import FuncAnimation
 
 
 def omega(env, centre, n, regle=choix_uniforme, p=None, q=None):
@@ -25,15 +23,17 @@ def omega(env, centre, n, regle=choix_uniforme, p=None, q=None):
     return omega
 
 
-def create_plane(n, m, ax):
-    """crée un pavage de sites vides sur ax, de taille n*m et renvoie le tableau des patches correspondants"""
-    plane = []
+def create_plane(env, centre, ax):
+    """crée un pavage de sites vides sur ax, avec le centre mis en valeur, et renvoie le tableau des patches correspondants"""
 
+    n, m = np.shape(env[0])
+    plane = []
+    c = liste_centre(centre)
     for x in range(n):
         line = []
         for y in range(m):
             # site vide
-            patch = create_patch(x, y, 0)
+            patch = create_patch(x, y, 0, centre=[x, y] in c)
             # ajouté à la figure
             ax.add_patch(patch)
             # ajouté au tableau
@@ -44,13 +44,14 @@ def create_plane(n, m, ax):
     return plane
 
 
-def refresh_plane(plane, univers):
+def refresh_plane(plane, univers, centre):
     "Ajuste la couleur des patches en fonction des nouveaux états de l'univers"
     n, m = np.shape(univers)
 
+    c = liste_centre(centre)
     for x in range(n):
         for y in range(m):
-            etat = get_cell(x, y, univers)
+            etat = get_cell(x, y, univers) + 2 * int([x, y] in c)
             patch = plane[x][y]
             coul = patch.get_facecolor()
             if coul != couleur[etat]:
@@ -86,7 +87,7 @@ def animation(env, centre, n, regle=choix_uniforme, p=None, q=None, show=True, f
     plt.axis([-1, 2*a+0.5, -1, sqrt(3)*b + 0.5])
 
     # création du plan vide
-    plane = create_plane(a, b, ax)
+    plane = create_plane(env, centre, ax)
 
     # Fonctions d'animation, update:  int -> liste de patches
     def f_update(i): return animation_update(i, omeg, plane)
