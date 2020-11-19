@@ -4,47 +4,57 @@ from random import choice
 from random import random
 
 
+def classe_voisins(liste, env):
+    """ Sépare les elts de liste selon s'ils ont plus de deux voisins infectés ou non """
+    l1 = []
+    l2 = []
+    for coord in liste:
+        r = 0
+        nv = get_adj(coord[0], coord[1], env[0])
+        for x in nv:
+            if get_cell(x[0], x[1], env[0]) == 1:
+                r += 1
+        if r >= 2:
+            l1.append(coord)
+        else:
+            l2.append(coord)
+
+    return l1, l2
+
+
+def migration_aléatoire(i, j, l, env):
+    """ fait migrer la cellule tumorale (i,j) sur un site de l choisit aléatoirement """
+    if l != []:
+        choix = choice(l)  # choisit aléatoirement un élément de l
+        set_cell(choix[0], choix[1], 1, env)  # on met un 1 sur le site choisit
+        set_cell(i, j, 0, env)  # on remet un 0 sur le site laissé vacant
+
+
 def dep_homotype(env, i, j, p):
+    """ déplace la cellule (i, j) suivant la règle homotype """
     # p est la probabilité d'aller sur une cellule possédant un voisin infecté : p>0.5 traduit une attraction entre cellules tumorales
     voisins = get_adj(i, j, env[0])
     voisins_libres = []
+    # on récupère les sites libres parmis les voisins
     for v in voisins:
         if get_cell(v[0], v[1], env[0]) != 1:
             voisins_libres.append(v)
+
     if voisins_libres != []:
-        l1 = []
-        l2 = []
-    # on sépare les sites libres selon s'ils ont un voisin infecté (autre que la cellule étudiée) ou non
-        for coord in voisins_libres:
-            r = 0
-            nv = get_adj(coord[0], coord[1], env[0])
-            for x in nv:
-                if get_cell(x[0], x[1], env[0]) == 1:
-                    r += 1
-            if r >= 2:
-                l1.append(coord)
-            else:
-                l2.append(coord)
+        l1 = classe_voisins(voisins_libres, env)[0]
+        l2 = classe_voisins(voisins_libres, env)[1]
+
     # tirage aléatoire d'un nombre entre 0 et 1 pour décider le type de site sur lequel migrer
         t = random()
-        if t <= p:
+        if t <= p:  # migration sur une cellule voisine d'une cellule infectée
+            migration_aléatoire(i, j, l1, env)
 
-            if l1 != []:
-                # on choisit au hasard un site dont l'un des voisins est une cellule tumorale
-                choix = choice(l1)
-                set_cell(choix[0], choix[1], 1, env)
-                set_cell(i, j, 0, env)
-
-        else:
-
-            if l2 != []:
-                # on choisit au hasard un site voisin libre
-                choix = choice(l2)
-                set_cell(choix[0], choix[1], 1, env)
-                set_cell(i, j, 0, env)
+        else:  # migration sur une cellule isolée
+            migration_aléatoire(i, j, l2, env)
 
 
 def dep_homotype_all(env, centre, p=None, q=None):
+    """ Applique la règle de déplacement homotype à toutes les cellules tumorales """
 
     tumorales = tri_cells(env[0])[1]
 
@@ -58,57 +68,52 @@ def dep_homotype_all(env, centre, p=None, q=None):
         if [i, j] in liste_centre(centre):
             regen_centre(env, centre)
 
-
 ### Prise en compte des groupes de cellules tumorales ###
 
 
-def dep_homotype_groupe(env, i, j, p):
+def liste_voisins_groupe(liste, g, env):
+    """ Donne les éléments de liste qui ont au moins deux voisins infectés du groupe g """
+    res = []
+    for coord in liste:
+        r = 0
+        nv = get_adj(coord[0], coord[1], env[0])
+        for x in nv:
 
+            if get_cell(x[0], x[1], env[0]) == 1 and get_groupe(x[0], x[1], env) == g:
+                r += 1
+
+        if r >= 2:
+            res.append(coord)
+    return res
+
+
+def dep_homotype_groupe(env, i, j, p):
+    """ déplace la cellule (i, j) suivant la règle homotype prenant en compte les groupes """
     g = get_groupe(i, j, env)
 
     voisins = get_adj(i, j, env[0])
     voisins_libres = []
+    # on récupère les sites libres parmis les voisins
     for v in voisins:
         if get_cell(v[0], v[1], env[0]) != 1:
             voisins_libres.append(v)
 
     if voisins_libres != []:
-        l1 = []
-        l2 = []
-    # on sépare les sites libres selon s'ils ont un voisin infecté (autre que la cellule étudiée) ou non
-        for coord in voisins_libres:
-            r = 0
-            nv = get_adj(coord[0], coord[1], env[0])
-            for x in nv:
+        # on sépare les sites libres selon s'ils ont un voisin infecté du même groupe que (i, j) (autre que la cellule étudiée) ou non
+        l1 = liste_voisins_groupe(voisins_libres, g, env)
+        l2 = classe_voisins(voisins_libres, env)[1]
 
-                if get_cell(x[0], x[1], env[0]) == 1 and get_groupe(x[0], x[1], env) == g:
-                    r += 1
-
-            if r >= 2:
-                l1.append(coord)
-
-            if get_cell(coord[0], coord[1], env[0]) == 0:
-                l2.append(coord)
-
+        # on choisit aléatoirement un élément entre 0 et 1
         t = random()
-        if t <= p:
+        if t <= p:  # migration sur une cellule voisine d'une cellule tumorale
+            migration_aléatoire(i, j, l1, env)
 
-            if l1 != []:
-                # on choisit au hasard un site dont l'un des voisins est une cellule tumorale
-                choix = choice(l1)
-                set_cell(choix[0], choix[1], 1, env)
-                set_cell(i, j, 0, env)
-
-        else:
-
-            if l2 != []:
-                # on choisit au hasard un site voisin libre
-                choix = choice(l2)
-                set_cell(choix[0], choix[1], 1, env)
-                set_cell(i, j, 0, env)
+        else:  # migration sur une cellule isolée
+            migration_aléatoire(i, j, l2, env)
 
 
 def dep_homotype_groupe_all(env, centre, p=None, q=None):
+    """ Applique la règle de déplacement homotype prenant en compte les groupes sur toutes les cellules tumorales """
 
     tumorales = tri_cells(env[0])[1]
 
