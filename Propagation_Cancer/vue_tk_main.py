@@ -6,6 +6,7 @@ from vue_univers import *
 from vue_animation import animation
 from tkinter import messagebox
 from vue_tk_savewin import *
+from vue_tk_param import *
 
 
 class App():
@@ -31,12 +32,15 @@ class App():
 
     def __init__(self):
         self.root = tk.Tk()
-        button = tk.Button(self.root, text='root quit', command=self.quit)
+        #button = tk.Button(self.root, text='root quit', command=self.quit)
         self.root.wm_title("Propagation cancer")
-        button.grid(row=0, column=1)
+        #button.grid(row=0, column=1)
 
         fig = plt.figure(figsize=(6, 6))
         self.graph_display(fig)
+
+        self.parametres = ParamWidget()
+        self.parametres.root.grid(row=0, column=1, sticky="nw")
 
         self.hold_animation = None
 
