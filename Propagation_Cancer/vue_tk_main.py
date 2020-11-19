@@ -66,17 +66,19 @@ class App():
     def tk_animation(self):
         self.canvas.grid_forget()
 
-        centre = (self.parametres.champ_coord_X, self.parametres.champ_coord_Y,
-                  self.parametres.champ_size_X, self.parametres.champ_size_Y)
+        centre = (int(self.parametres.champ_coord_X.get()), int(self.parametres.champ_coord_Y.get()),
+                  int(self.parametres.champ_size_X.get()), int(self.parametres.champ_size_Y.get()))
 
         univers = create_univers(
-            self.parametres.taille_x, self.parametres.taille_y)
+            int(self.parametres.taille_x), int(self.parametres.taille_y))
         env = [univers, []]
+
+        rule = dep_homotype_all
 
         fig = plt.figure()
         self.graph_display(fig)
         self.hold_animation = animation(
-            env, centre, 100, rule, self.parametres.champ_p, self.parametres.champ_p, show=False, fig=fig, interv=300)
+            env, centre, 100, rule, float(self.parametres.champ_p.get()), float(self.parametres.champ_p.get()), show=False, fig=fig, interv=int(self.parametres.champ_interv.get()))
 
     def save_simulation(self):
         # S'il n'y a aucune animation
