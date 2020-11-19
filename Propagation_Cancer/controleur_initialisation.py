@@ -29,8 +29,8 @@ def init_univers(tx, ty, centre, Pocc=0.5, init_tumor=None, cx=None, cy=None):
     # cx et cy sont les coordonnées du point a partir du quel on introduit la forme init_tumor
     univers = create_univers(tx, ty)
     env = create_env(univers)
-
-    if init_tumor is not None:  # on veut rajouter une forme en plus du centre
+    
+    if init_tumor is not None : #on veut rajouter une forme en plus du centre
         (a, b) = np.shape(init_tumor)
 
         # si rien n'est précisé, on met init_tumor au milieu
