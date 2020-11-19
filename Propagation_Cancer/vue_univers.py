@@ -34,7 +34,7 @@ def display_full(env, centre, ax, show=True):
 
     # tumorales en premier plan. Mises en valeur si elles sont dans le centre
     for (x, y) in c:
-        display_patch(x, y, 1, ax, centre=(x, y) in c)
+        display_patch(x, y, 3, ax)
 
     for (x, y) in t:
         display_patch(x, y, 1, ax, centre=(x, y) in c)
