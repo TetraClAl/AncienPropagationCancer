@@ -26,8 +26,11 @@ def migration_aléatoire(i, j, l, env):
     """ fait migrer la cellule tumorale (i,j) sur un site de l choisit aléatoirement """
     if l != []:
         choix = choice(l)  # choisit aléatoirement un élément de l
-        set_cell(choix[0], choix[1], 1, env)  # on met un 1 sur le site choisit
-        set_cell(i, j, 0, env)  # on remet un 0 sur le site laissé vacant
+        # si ce site n'est pas deja occupé par une cellule tumorale, (i,j) peut bouger
+        if get_cell(choix[0], choix[1], env[0]) != 1:
+            # on met un 1 sur le site choisit
+            set_cell(choix[0], choix[1], 1, env)
+            set_cell(i, j, 0, env)  # on remet un 0 sur le site laissé vacant
 
 
 def dep_homotype(env, i, j, p):
