@@ -3,7 +3,7 @@ import numpy as np
 
 
 def test_dep_homotype():
-
+    
     # test où ca ne bouge pas car pas de cellules tumorales voisines
     env = init_univers(3, 3, (1, 1, 1, 1), 0)
     p = 1
