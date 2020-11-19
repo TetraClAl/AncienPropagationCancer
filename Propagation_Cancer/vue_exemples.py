@@ -144,4 +144,4 @@ def display_homotype():
               p=0.5, fig=figure, interv=1900)
 
 # OK
-# display_homotype()
+#display_homotype()

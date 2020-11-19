@@ -33,8 +33,8 @@ def get_color(x, y, univers, centre):
         return get_cell(x, y, univers)
 # couleur en RGB, mi-transparente, selon l'état:
 # 0 = vide = blanc
-# 1= tumorale = rouge
-# 2= astrocyte = gris
+# 1= tumorale = gris
+# 2= astrocyte = saumon
 # 3= tumorale centrale = rouge foncé
 
 
