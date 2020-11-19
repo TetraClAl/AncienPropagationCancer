@@ -73,7 +73,7 @@ class ParamWidget():
         self.champ_coord_Y.grid(row=5, column=2)
 
         # Taille centre
-        label_size = tk.Label(self.root, text="Centre (coord) : ", anchor="w")
+        label_size = tk.Label(self.root, text="Taille centre : ", anchor="w")
         label_size.grid(row=6, column=0)
         self.champ_size_X = tk.Spinbox(
             self.root, format='%10.0f', increment=1, from_=0, to=10, width=15)
