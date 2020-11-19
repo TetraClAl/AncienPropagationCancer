@@ -14,7 +14,7 @@ def regen_centre(env, centre):
             if get_cell(dx + i, dy + j, env[0]) != 1:
                 set_cell(dx + i, dy + j, 1, env)
 
-def liste_centre(env, centre):
+def liste_centre(centre):
 
     dx = centre[0] #coordonnée en x du coin en haut à gauche du centre
     dy = centre[1] #coordonnée en y du coin en haut à gauche du centre
