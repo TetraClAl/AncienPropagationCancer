@@ -15,7 +15,7 @@ class SaveWin:
         self.root.geometry("500x200")
         self.root.wm_title("Sauvegarde")
         self.root.columnconfigure(0, minsize=500)
-        self.root.rowconfigure(0, minsize=100)
+        self.root.rowconfigure(0, minsize=80)
         self.root.rowconfigure(1, minsize=80)
         self.root.rowconfigure(2, minsize=20)
 
