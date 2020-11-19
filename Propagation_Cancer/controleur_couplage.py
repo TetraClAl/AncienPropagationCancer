@@ -25,7 +25,7 @@ def jonct_duo_evaluation(env, x, y):
 
 
 def jonct_duo_move(env, x, y, p=None, q=None):
-
+    """Bouge la cellule (x,y) avec les paramètres p et q. Lorsqu'ils sont à None, les règles respectives ne sont pas prise en compte. Si les deux sont à None, la règle par défaut est le choix uniforme"""
     vides, astros, homo_yes, homo_no = jonct_duo_evaluation(env, x, y)
 
     # choix de la liste de sites eligibles

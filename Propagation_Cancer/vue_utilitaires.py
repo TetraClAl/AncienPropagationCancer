@@ -27,7 +27,7 @@ def display_center(x, y, fig):
 
 def get_color(x, y, univers, centre):
     c = liste_centre(centre)
-    if [x, y] in c:
+    if (x, y) in c:
         return 3
     else:
         return get_cell(x, y, univers)
