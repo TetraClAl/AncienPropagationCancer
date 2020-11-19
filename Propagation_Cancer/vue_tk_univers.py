@@ -15,14 +15,15 @@ class UniversWin():
     def __init__(self, param):
         # Initialisation
         self.root = tk.Tk()
-        self.root.geometry("500x200")
+        self.root.geometry("400x200")
         self.root.wm_title("Univers")
         self.parameter = param
 
         self.root.columnconfigure(0, minsize=250)
-        self.root.rowconfigure(0, minsize=80)
-        self.root.rowconfigure(1, minsize=80)
-        self.root.rowconfigure(2, minsize=20)
+        self.root.rowconfigure(0, minsize=50)
+        self.root.rowconfigure(1, minsize=50)
+        self.root.rowconfigure(2, minsize=50)
+        self.root.rowconfigure(3, minsize=50)
 
         # Proportion astrocyte
         label_p = tk.Label(
