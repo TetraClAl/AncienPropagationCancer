@@ -39,7 +39,7 @@ def tri_voisins(x, y, univers):
         etat = get_cell(i, j, univers)
 
         if etat == 0:
-            vide += [(i, j)]
+            vides += [(i, j)]
             libres += [(i, j)]
         elif etat == 1:
             tumorales += [(i, j)]

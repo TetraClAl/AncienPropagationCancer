@@ -40,6 +40,8 @@ def display_full(env, centre, ax, show=True):
         display_patch(x, y, 1, ax, centre=(x, y) in c)
 
     if show:
+        n, m = np.shape(env[0])
+        plt.axis([-1, 2*n+0.5, -1, sqrt(3)*m + 0.5])
         plt.show()
 
 

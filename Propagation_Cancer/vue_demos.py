@@ -6,31 +6,32 @@ from vue_animation import *
 # et une animation (seconde fenetre)
 
 # Modifier les paramètres suivants
-p = None
-q = None
+p = 1
+q = 1
 pocc = 0.5
-
+taille = 25
 
 # Séparation en 4 sous-figures
 fig = plt.figure()
-#plt.suptitle("dep_homotype_groupe_all \n p=1: attractif")
+plt.suptitle(
+    "Couplage des jonctions \n p=1, q=1: les cellules restent en groupent et mangent les astrocytes")
 
 ax1 = fig.add_subplot(2, 2, 1)
-plt.axis([-1, 10, -1, 10])
+plt.axis([-1, 2*taille + 0.5, -1, sqrt(3) * taille])
 
 ax2 = fig.add_subplot(2, 2, 2)
-plt.axis([-1, 10, -1, 10])
+plt.axis([-1, 2*taille + 0.5, -1, sqrt(3) * taille])
 
 ax3 = fig.add_subplot(2, 2, 3)
-plt.axis([-1, 10, -1, 10])
+plt.axis([-1, 2*taille + 0.5, -1, sqrt(3) * taille])
 
 ax4 = fig.add_subplot(2, 2, 4)
-plt.axis([-1, 10, -1, 10])
+plt.axis([-1, 2*taille + 0.5, -1, sqrt(3) * taille])
 
 
 # création du centre et de l'environnement sans astrocytes
-centre = [2, 2, 3, 1]
-env = init_univers(15, 15, centre, Pocc=pocc)
+centre = [2, 2, 3, 4]
+env = init_univers(taille, taille, centre, Pocc=pocc)
 
 # création des planes sur chaque figure
 plane0 = create_plane(env, ax1)
@@ -63,7 +64,7 @@ display_regle_4(regle)
 
 
 def anim_regle(regle):
-    animation(env, centre, 20, regle, p, q)
+    animation(env, centre, 35, regle, p, q, interv=500)
 
 
 anim_regle(regle)
