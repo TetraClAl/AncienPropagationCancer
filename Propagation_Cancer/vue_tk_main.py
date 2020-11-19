@@ -7,6 +7,7 @@ from vue_animation import animation
 from tkinter import messagebox
 from vue_tk_savewin import *
 from vue_tk_param import *
+import tkinter.ttk as ttk
 
 
 class App():
@@ -38,6 +39,9 @@ class App():
 
         fig = plt.figure(figsize=(6, 6))
         self.graph_display(fig)
+
+        self.s = ttk.Style()
+        self.s.theme_use('clam')
 
         self.parametres = ParamWidget()
         self.parametres.root.grid(row=0, column=1, sticky="nw")
