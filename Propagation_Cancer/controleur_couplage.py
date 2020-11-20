@@ -61,6 +61,7 @@ def jonct_duo_move(env, x, y, p, q, print_proba=False):
 
 
 def jonction_duo(env, centre, p=None, q=None):
+    """ Règle globale appliquée à tout l'univers: selon les probas prises en compte, elle applique le choix uniforme, la jonction homotype, hétérotype ou les deux"""
     tumorales = tri_cells(env[0])[1]
 
     for (x, y) in tumorales:  # a toutes les cellules tumorales, on applique la règle

@@ -19,8 +19,6 @@ import copy
 #
 # (NB : Les listes de cellules seront sûrement classées à un moment pour accélérer les fusions sans doublons)
 # (idée : Algo de tri fusion sélectionné, car il se fera naturellement au fûr et à mesure de la fusion des listes)
-# TODO : Se coucher avant 2h du mat
-# TODO : Mettre à jour le marquage des fonctionnalités en fonction de
 #
 # -------
 

@@ -1,19 +1,8 @@
-import random as rd
+from controleur_utilitaires import *
 
 from data_main import *
 
 # regle(env,centre, p = None, q = None)
-
-
-def coord_centre(centre):
-    """permet d'obtenir les coordonnées de tous les sites occupant le centre 
-    centre est un quadruplet donnant les coordonées du centre du centre, la largeur selon x puis y"""
-    liste_centre = []
-    x, y, l, L = centre
-    for i in range(l):
-        for j in range(L):
-            liste_centre.append((x+i, y+j))
-    return liste_centre
 
 
 def choix_uniforme_site(env, x, y):
@@ -35,7 +24,7 @@ def choix_uniforme(env, centre, p=None, q=None):
     vides, tumorales, astrocytes = tri_cells(
         env[0])  # trie les sites selon leur type
     # permet d'obtenir tous les sites qui sont dans le centre
-    centres = coord_centre(centre)
+    centres = liste_centre(centre)
 
     for site in tumorales:  # a toutes les cellules tumorales, on applique un choix uniforme
         i, j = site
