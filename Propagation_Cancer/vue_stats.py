@@ -27,7 +27,7 @@ def display_occ(env, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5
         plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(-1, 1)
-    plt.show()
+    # plt.show()
 
 
 def display_distance(env, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -48,7 +48,7 @@ def display_distance(env, iterations, centre, function=dep_homotype_all, p=0.5, 
         plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(0, 1.5*max(Y))
-    plt.show()
+    # plt.show()
 
 
 def display_moyenne_occ(env, n, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -76,7 +76,7 @@ def display_moyenne_occ(env, n, iterations, centre, function=dep_homotype_all, p
         plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(-1, 1)
-    plt.show()
+    # plt.show()
 
 
 def display_moyenne_distance(env, n, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -95,7 +95,7 @@ def display_moyenne_distance(env, n, iterations, centre, function=dep_homotype_a
         plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(0, 1.5*max(Y))
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':
