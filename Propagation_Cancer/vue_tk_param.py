@@ -14,7 +14,7 @@ class ParamWidget():
     def set_univers(self):
         self.uni = UniversWin(self)
 
-    def __init__(self):
+    def __init__(self, data):
         # Initialisation
         self.root = tk.Frame()
 
@@ -23,9 +23,9 @@ class ParamWidget():
         self.s.theme_use('clam')
 
         # Taille
-        self.taille_x = 20
-        self.taille_y = 20
-        self.proportion = 0.5
+        self.taille_x = data.taille_y
+        self.taille_y = data.taille_x
+        self.proportion = data.proportion
 
         # Champ n
         label_n = tk.Label(self.root, text="Itérations : ", anchor="w")
@@ -33,6 +33,8 @@ class ParamWidget():
         self.champ_iter = tk.Spinbox(
             self.root, format='%10.0f', increment=1, from_=0, to=200, width=32)
         self.champ_iter.grid(row=0, column=1, columnspan=2)
+        self.champ_iter.delete(0, "end")
+        self.champ_iter.insert(0, 20)
 
         # Homotype/hétérotype/jonction
         label_f = tk.Label(self.root, text="Modèle : ", anchor="w")
@@ -78,9 +80,14 @@ class ParamWidget():
         self.champ_size_X = tk.Spinbox(
             self.root, format='%10.0f', increment=1, from_=0, to=10, width=15)
         self.champ_size_X.grid(row=6, column=1)
+        self.champ_size_X.delete(0, "end")
+        self.champ_size_X.insert(0, "1")
+
         self.champ_size_Y = tk.Spinbox(
             self.root, format='%10.0f', increment=1, from_=0, to=10, width=15)
         self.champ_size_Y.grid(row=6, column=2)
+        self.champ_size_Y.delete(0, "end")
+        self.champ_size_Y.insert(0, "1")
 
         # Univers
         self.button_univers = tk.Button(

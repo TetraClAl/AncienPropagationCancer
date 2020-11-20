@@ -9,6 +9,7 @@ from vue_tk_savewin import *
 from vue_tk_param import *
 import tkinter.ttk as ttk
 from controleur_couplage import jonction_duo
+from vue_stats import *
 
 
 class App():
@@ -23,9 +24,15 @@ class App():
                                 command=self.save_simulation)
 
         menusimulation = tk.Menu(mainmenu, tearoff=0)
-        #menusimulation.add_command(label="Générer", command=self.generate)
+        menusimulation.add_command(label="Générer", command=self.update_env)
         menusimulation.add_command(
-            label="Générer", command=self.tk_animation)
+            label="Simuler", command=self.tk_animation)
+
+        menustats = tk.Menu(menusimulation, tearoff=0)
+        menustats.add_command(label="Distance", command=self.stat_distance)
+        menustats.add_command(label="Occupation", command=self.stat_occupation)
+
+        menusimulation.add_cascade(label="Stats", menu=menustats)
 
         mainmenu.add_cascade(label="Fichier", menu=menufichier)
         mainmenu.add_cascade(label="Simulation", menu=menusimulation)
@@ -44,10 +51,15 @@ class App():
         self.s = ttk.Style()
         self.s.theme_use('clam')
 
-        self.parametres = ParamWidget()
-        self.parametres.root.grid(row=0, column=1, sticky="nw")
-
+        self.env = None
         self.hold_animation = None
+
+        self.taille_x = 20
+        self.taille_y = 20
+        self.proportion = 0.5
+
+        self.parametres = ParamWidget(self)
+        self.parametres.root.grid(row=0, column=1, sticky="nw")
 
         self.create_menu()
         self.root.protocol("WM_DELETE_WINDOW", quit)
@@ -64,28 +76,56 @@ class App():
         self.canvas = self.graph.get_tk_widget()
         self.canvas.grid(row=0, column=0)
 
-    def tk_animation(self):
-        self.canvas.grid_forget()
+    def update_param(self):
 
-        centre = (int(self.parametres.champ_coord_X.get()), int(self.parametres.champ_coord_Y.get()),
-                  int(self.parametres.champ_size_X.get()), int(self.parametres.champ_size_Y.get()))
+        self.centre = (int(self.parametres.champ_coord_X.get()), int(self.parametres.champ_coord_Y.get(
+        )), int(self.parametres.champ_size_X.get()), int(self.parametres.champ_size_Y.get()))
 
-        proportion = self.parametres.proportion
-        env = init_univers(int(self.parametres.taille_x),
-                           int(self.parametres.taille_y), centre, Pocc=proportion, init_tumor=None, cx=None, cy=None)
+        self.proportion = self.parametres.proportion
 
+        self.p = float(self.parametres.champ_p.get())
+        self.q = float(self.parametres.champ_q.get())
         rule_str = self.parametres.champ_modele.get()
-        p = float(self.parametres.champ_p.get())
-        q = float(self.parametres.champ_q.get())
         if rule_str == 'Homotype':
-            q = None
+            self.q = None
         if rule_str == 'Hétérotype':
-            p = None
+            self.p = None
 
+        self.n = int(self.parametres.champ_iter.get())
+
+        self.interal = int(self.parametres.champ_interv.get())
+
+        self.taille_x = int(self.parametres.taille_x)
+        self.taille_y = int(self.parametres.taille_y)
+
+    def update_env(self):
+        self.update_param()
+
+        self.env = init_univers(self.taille_x, self.taille_y, self.centre,
+                                Pocc=self.proportion, init_tumor=None, cx=None, cy=None)
+
+        self.canvas.grid_forget()
         fig = plt.figure()
         self.graph_display(fig)
+
         self.hold_animation = animation(
-            env, centre, int(self.parametres.champ_iter.get()), jonction_duo, p, q, show=False, fig=fig, interv=int(self.parametres.champ_interv.get()))
+            self.env, self.centre, 1, jonction_duo, None, None, show=False, fig=fig, interv=1)
+
+    def tk_animation(self):
+
+        self.update_param()
+
+        if self.env == None:
+            self.update_env()
+        else:
+            del self.hold_animation
+
+        self.canvas.grid_forget()
+        fig = plt.figure()
+        self.graph_display(fig)
+
+        self.hold_animation = animation(
+            self.env, self.centre, self.n, jonction_duo, self.p, self.q, show=False, fig=fig, interv=self.interal)
 
     def save_simulation(self):
         # S'il n'y a aucune animation
@@ -122,6 +162,22 @@ class App():
         display_full(univers, ax, False)
 
         self.graph_display(fig)
+
+    def stat_distance(self):
+        self.update_param()
+
+        plt.clf()
+
+        display_moyenne_distance(self.env, 50, self.n,
+                                 self.centre, jonction_duo, self.p, self.q)
+
+    def stat_occupation(self):
+        self.update_param()
+
+        plt.clf()
+
+        display_moyenne_occ(self.env, 50, self.n, self.centre,
+                            jonction_duo, self.p, self.q)
 
 
 if __name__ == "__main__":
