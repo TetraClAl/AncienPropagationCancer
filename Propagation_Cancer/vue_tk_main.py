@@ -11,6 +11,8 @@ import tkinter.ttk as ttk
 from controleur_couplage import jonction_duo
 from vue_stats import *
 
+matplotlib.use('tkagg')
+
 # Classe principale de l'application
 
 

@@ -1,6 +1,7 @@
 from data_main import *
 from vue_univers import *
 from vue_animation import *
+from matplotlib import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
