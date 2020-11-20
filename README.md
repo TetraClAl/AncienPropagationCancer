@@ -1,3 +1,6 @@
+Lire USE.md pour les informations concernant l'exécution du programme.
+
+
 
 ## Découpage travail 
 
