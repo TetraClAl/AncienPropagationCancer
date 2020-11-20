@@ -4,6 +4,8 @@ Lire USE.md pour les informations concernant l'exécution du programme.
 
 ## Découpage travail 
 
+Ceci est le travail du groupe 5 réalisé dans le cadre des coding weeks. Il permet d'obtenir une application qui modélise la propagation d'un cancer après le choix de plusieurs paramètres. 
+
 ### Sprint 0 : description du projet
 
 Fonctionnalité 0.1 : créer dépôt git et groupe teams 
@@ -53,24 +55,34 @@ Fonctionnalité 4.2 : statistiques sur nos résultats
 
 ## Planning prévisionnel 
 
-Lundi matin : sprint 0 
-Lundi après-midi : sprint 1 et peut-être entamer sprint 2 ? 
+### Lundi
+Matin : sprint 0 
 
-Mardi : Forum et optionnellement continuer le sprint 2  
+Après-midi : sprint 1 et peut-être entamer sprint 2 ? 
 
-Mercredi matin : sprint 2 
+### Mardi
+Forum et optionnellement continuer le sprint 2  
 
-Mercredi après-midi : sprint 3 
+### Mercredi 
+Matin : sprint 2 
 
-Jeudi matin : sprint 4
+Après-midi : sprint 3 
 
-Jeudi après-midi : finir sprint 4 et préparer livrable
+### Jeudi
+Matin : sprint 4
+
+Après-midi : finir sprint 4 et préparer livrable
 
 ## Journal de bord  
-Lundi : Ce matin, nous avons discuté à propos des différents choix de modélisation ainsi que sur le découpage du travail ce qui nous a permis de définir les différents sprints et fonctionnalités. Nous avons aussi établi quelle personne s'occuperait de chacune des fonctionnalités et donc du planning. L'aprés-midi nous avons prévu de commencer à coder avec notamment des fontions utilitaires essentielles, l'initialisation de l'univers, un premier modèle et enfin le début de l'affichage. 
 
-Mardi : Nous nous étions tous incrit à plusieurs créneaux pour le forum, ce qui nous a donc laissé moins de temps pour le projet. Mais nous nous sommes organisés pour finir le sprint 1 et commencer le sprint 2. 
+## Lundi 
+Ce matin, nous avons discuté à propos des différents choix de modélisation ainsi que sur le découpage du travail ce qui nous a permis de définir les différents sprints et fonctionnalités. Nous avons aussi établi quelle personne s'occuperait de chacune des fonctionnalités et donc du planning. L'aprés-midi nous avons prévu de commencer à coder avec notamment des fontions utilitaires essentielles, l'initialisation de l'univers, un premier modèle et enfin le début de l'affichage. 
 
-Mercredi : Le matin, nous avons fini le sprint 2 mais nous avons en fin de matinée découvert une erreur dans nos programmes. Après la confèrence, on a donc travaillé sur cette erreur en groupe pour aller plus vite. 
+## Mardi 
+Nous nous étions tous incrit à plusieurs créneaux pour le forum, ce qui nous a donc laissé moins de temps pour le projet. Mais nous nous sommes organisés pour finir le sprint 1 et commencer le sprint 2. 
 
-Jeudi : 
+## Mercredi 
+ Le matin, nous avons fini le sprint 2 mais nous avons en fin de matinée découvert une erreur dans nos programmes. Après la confèrence, on a donc travaillé sur cette erreur en groupe pour aller plus vite. L'aprés-midi, nous avons fini le sprint 3 c'est à dire la finalisation du MVP et la gestion du couplage jonction homotype et heterotype. 
+
+## Jeudi 
+Nous avons réalisé le sprint 4, c'est à dire la création d'une interface Tkinter et des statistiques permettant de tirer bénéfice de notre travail. Nous en avons aussi profité pour régler les derniers bugs que l'on a rencontré. 
