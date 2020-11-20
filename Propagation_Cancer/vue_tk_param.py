@@ -8,6 +8,8 @@ from vue_animation import *
 from vue_tk_univers import *
 import tkinter.ttk as ttk
 
+# Widget de gestion des paramètres
+
 
 class ParamWidget():
 
@@ -95,6 +97,7 @@ class ParamWidget():
         self.button_univers.grid(row=7, column=0, columnspan=3)
 
     def ajuster_taille(self, x, y):
+        """ Méthode permettant d'actualiser les valeurs de taille de l'univers. """
         self.taille_x = x
         self.taille_y = y
 

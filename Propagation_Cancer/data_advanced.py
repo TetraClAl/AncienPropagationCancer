@@ -2,9 +2,8 @@ from data_import import *
 from data_base import *
 from data_fusion import *
 
-# Note to self (TODO) : utiliser des listes de coordonnées triées selon l'ordre alphabétique pourrait permettre d'accélérer les fusions de listes en éléminant les doublons.
-# Les propriétés de ces éléments (coordonnées ne se répétant pas) pourraient permettre d'obtenir un algo très rapide.
 
+# Mettre la variable sur True pour activer les algorithmes à tri/fusion
 use_fusion = True
 
 
@@ -28,10 +27,10 @@ hex_directions = [
      [-1,  0], [0, +1], [+1, +1]], ]
 
 
-def voisin_dir(hex, direction):
+def voisin_dir(coord, direction):
     """ Retourne les coordonnées de l'hex situé dans la direction associée. """
     # Calcul de parité
-    if hex[1] % 2 == 1:
+    if coord[1] % 2 == 1:
         parity = 1
     else:
         parity = 0
@@ -41,12 +40,15 @@ def voisin_dir(hex, direction):
 
     # Calcul des nouvelles coordonnées ajoutant nos coordonnées d'origine comme offset
     # Mauvaise inversion ? TODO : Vérifier que les coordonnées ne sont pas inversées (update : normalement c'est bon, les tests sont corrects)
-    return hex[0] + direction_calc[0], hex[1] + direction_calc[1]
+    return coord[0] + direction_calc[0], coord[1] + direction_calc[1]
 
 
 def s_get_adj(x, y, univers):
     """ Retourne la liste des coordonnées des cellules adjacentes à (x, y). """
+    # Initialisation
     Lc = []
+
+    # Récupération des cellules adjacentes
     for direction in range(6):
         x1, y2 = voisin_dir([x, y], direction)
         Lc += [[x1, y2]]
@@ -148,7 +150,6 @@ def s_prive_liste(l1, l2):
 def s_fusion_groupe(index_groupe1, index_groupe2, env):
     """ Fait fusionner deux groupes. """
     # Récupération de variables intermédiaires
-    #univers = env[0]
     folder = env[1]
 
     # Récupération des groupes
@@ -159,13 +160,8 @@ def s_fusion_groupe(index_groupe1, index_groupe2, env):
     groupe1[0] = s_union_liste(groupe1[0], groupe2[0])
     groupe1[1] = s_union_liste(groupe1[1], groupe2[1])
 
-    # print("----")
-    #print("Composants : ", groupe1[0])
-    #print("Adjacents : ", groupe1[1])
-
     # Suppressions des adjacentes superposées
     groupe1[1] = s_prive_liste(groupe1[1], groupe1[0])
-    #print("Maj Adjacents : ", groupe1[1])
 
     # Suppression du groupe 2
     del folder[index_groupe2]
@@ -203,6 +199,7 @@ def s_creer_groupe(cellules, env):
 
 
 def s_check_cell_groupe(x, y, env):
+    """ Fonction permettant de vérifier si une cellule est bien dans un groupe, et dans le cas contraire de corriger la situation. """
     i = s_get_groupe(x, y, env)  # Non _adj
     if i == None and s_get_cell(x, y, env[0]) == 1:
         return s_creer_groupe([[x, y]], env)
@@ -214,8 +211,6 @@ def s_cell_delete(x, y, env):
     # Fetch
     folder = env[1]
     index_groupe = s_get_groupe(x, y, env)  # Non _adj
-
-    # print(env)
 
     # Cas sans groupe
     if index_groupe == None:

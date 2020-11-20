@@ -73,6 +73,7 @@ def create_env(univers):
     """ Crée un environnement de taille (x, y). """
     env = [univers, []]
 
+    # Boucle permettant de créer les structures de gestion des groupes
     for i in range(len(univers)):
         for j in range(len(univers)):
             s_check_cell_groupe(i, j, env)
@@ -112,6 +113,7 @@ def union_liste(l1, l2):
 
 def inter_liste(l1, l2):
     """ Fait un inter de deux listes de cellules. """
+    # Fonction non implémentée, prévue mais finalement non nécessaire
 
 
 def prive_liste(l1, l2):
@@ -121,10 +123,12 @@ def prive_liste(l1, l2):
 
 def egal_liste(l1, l2, univers):
     """ Indique si deux listes sont égales. """
+    # Fonction non implémentée, prévue mais finalement non nécessaire
 
 
 def doubl_liste(l1, univers):
     """ Retourne une liste l1 sans doublons. """
+    # Fonction non implémentée, prévue mais finalement non nécessaire
 
 
 def tri_cells(univers):

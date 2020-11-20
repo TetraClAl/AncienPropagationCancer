@@ -4,12 +4,18 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import messagebox
 from matplotlib import pyplot as plt
 
+# Classe permettant de saisir les paramètres de taille de l'univers
+
 
 class UniversWin():
     def confirm(self):
+        """ Méthode exécutée pour enregistrer les données et fermer la fenêtre. """
+        # Sauvegarde données
         self.parameter.proportion = self.champ_p.get()
         self.parameter.ajuster_taille(
             int(self.champ_coord_X.get()), int(self.champ_coord_Y.get()))
+
+        # Fermeture fenêtre
         self.root.destroy()
 
     def __init__(self, param):
@@ -19,6 +25,7 @@ class UniversWin():
         self.root.wm_title("Univers")
         self.parameter = param
 
+        # Ajustement agencement
         self.root.columnconfigure(0, minsize=250)
         self.root.rowconfigure(0, minsize=50)
         self.root.rowconfigure(1, minsize=50)
