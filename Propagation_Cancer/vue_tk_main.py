@@ -194,8 +194,8 @@ class App():
 
         self.update_param()
 
-        plt.clf()
         fig = plt.figure(2)
+        plt.clf()
 
         display_moyenne_distance(self.env, self.sample, self.n,
                                  self.centre, jonction_duo, self.p, self.q)
@@ -209,8 +209,8 @@ class App():
 
         self.update_param()
 
-        plt.clf()
         fig = plt.figure(2)
+        plt.clf()
 
         display_moyenne_occ(self.env, self.sample, self.n, self.centre,
                             jonction_duo, self.p, self.q)
