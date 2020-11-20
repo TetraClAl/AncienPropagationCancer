@@ -1,4 +1,6 @@
 Lire USE.md pour les informations concernant l'exécution du programme.
+Voir le coverage dans htmlcov/README.md
+Fait par le Groupe 5
 
 
 
