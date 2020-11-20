@@ -21,13 +21,13 @@ def display_occ(env, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5
     plt.legend()
     plt.title("Occupation de la couche en fonction du nombre d'itérations")
 
-    for x, y in zip(X, Y1):
-        plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
-    for x, y in zip(X, Y2):
-        plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y1):
+    #plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y2):
+    #plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(-1, 1)
-    plt.show()
+    # plt.show()
 
 
 def display_distance(env, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -44,11 +44,11 @@ def display_distance(env, iterations, centre, function=dep_homotype_all, p=0.5, 
     plt.title(
         "Cellule tumorale la plus éloignée du centre en fonction du nombre d'itération")
 
-    for x, y in zip(X, Y):
-        plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y):
+    #plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(0, 1.5*max(Y))
-    plt.show()
+    # plt.show()
 
 
 def display_moyenne_occ(env, n, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -68,15 +68,15 @@ def display_moyenne_occ(env, n, iterations, centre, function=dep_homotype_all, p
     plt.bar(X, -Y2, color=(1.0, 0.38823529411764707,
                            0.2784313725490196, 0.4), label="Taux d'astrocytes")
     plt.legend()
-    plt.title("Occupation moyenne de la couche en fonction du nombre d'itérations")
+    plt.title("Occupation moyenne de la couche")
 
-    for x, y in zip(X, Y1):
-        plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
-    for x, y in zip(X, Y2):
-        plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y1):
+    #plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y2):
+    #plt.text(x, -y-0.08, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(-1, 1)
-    plt.show()
+    # plt.show()
 
 
 def display_moyenne_distance(env, n, iterations, centre, function=dep_homotype_all, p=0.5, q=0.5):
@@ -89,13 +89,13 @@ def display_moyenne_distance(env, n, iterations, centre, function=dep_homotype_a
     plt.bar(X, Y, color='darkblue', label="Distance au centre")
     plt.legend()
     plt.title(
-        "Cellule tumorale la plus éloignée du centre en fonction du nombre d'itération")
+        "Cellule tumorale la plus éloignée du centre")
 
-    for x, y in zip(X, Y):
-        plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
+    # for x, y in zip(X, Y):
+    #plt.text(x, y+0.02, '%.02f' % y, ha='center', va='bottom')
 
     plt.ylim(0, 1.5*max(Y))
-    plt.show()
+    # plt.show()
 
 
 if __name__ == '__main__':

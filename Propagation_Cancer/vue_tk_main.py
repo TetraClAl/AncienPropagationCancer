@@ -15,6 +15,8 @@ matplotlib.use('tkagg')
 
 # Classe principale de l'application
 
+matplotlib.use('tkagg')
+
 
 class App():
 
@@ -193,9 +195,14 @@ class App():
         self.update_param()
 
         plt.clf()
+        fig = plt.figure(2)
 
-        display_moyenne_distance(self.env, 50, self.n,
+        display_moyenne_distance(self.env, self.sample, self.n,
                                  self.centre, jonction_duo, self.p, self.q)
+
+        window = tk.Toplevel()
+        canvas = FigureCanvasTkAgg(fig, master=window)
+        canvas.get_tk_widget(). pack()
 
     def stat_occupation(self):
         """ Méthode callback pour les stats d'occupation. """
@@ -203,9 +210,14 @@ class App():
         self.update_param()
 
         plt.clf()
+        fig = plt.figure(2)
 
-        display_moyenne_occ(self.env, 50, self.n, self.centre,
+        display_moyenne_occ(self.env, self.sample, self.n, self.centre,
                             jonction_duo, self.p, self.q)
+
+        window = tk.Toplevel()
+        canvas = FigureCanvasTkAgg(fig, master=window)
+        canvas.get_tk_widget(). pack()
 
     def aide(self):
         tk.messagebox.showinfo(
