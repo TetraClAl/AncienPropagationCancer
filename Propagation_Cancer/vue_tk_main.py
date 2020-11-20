@@ -42,8 +42,7 @@ class App():
         # Construction finale du menu
         mainmenu.add_cascade(label="Fichier", menu=menufichier)
         mainmenu.add_cascade(label="Simulation", menu=menusimulation)
-        mainmenu.add_cascade(
-            label="Aide", command=self.quit)
+        mainmenu.add_cascade(label="Aide", command=self.aide)
 
     def __init__(self):
         self.root = tk.Tk()
@@ -65,6 +64,7 @@ class App():
 
         self.taille_x = 20
         self.taille_y = 20
+        self.sample = 50
         self.proportion = 0.5
 
         # Création et ajout du widget de gestion des paramètres
@@ -97,6 +97,8 @@ class App():
         )), int(self.parametres.champ_size_X.get()), int(self.parametres.champ_size_Y.get()))
 
         self.proportion = self.parametres.proportion
+
+        self.sample = int(self.parametres.champ_sample.get())
 
         self.p = float(self.parametres.champ_p.get())
         self.q = float(self.parametres.champ_q.get())
@@ -202,6 +204,10 @@ class App():
 
         display_moyenne_occ(self.env, 50, self.n, self.centre,
                             jonction_duo, self.p, self.q)
+
+    def aide(self):
+        tk.messagebox.showinfo(
+            title="Aide", message="Lire READ.me pour un apperçu du projet\nLire USE.md pour les consignes d'utilisation\nSe référer à ./Livrables pour des renseignements supplémentaires")
 
 
 if __name__ == "__main__":

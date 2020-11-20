@@ -96,6 +96,15 @@ class ParamWidget():
             self.root, text="Univers", command=self.set_univers, width=38)
         self.button_univers.grid(row=7, column=0, columnspan=3)
 
+        # Sample
+        label_sample = tk.Label(self.root, text="Taille stat : ", anchor="w")
+        label_sample.grid(row=8, column=0)
+        self.champ_sample = tk.Spinbox(
+            self.root, format='%10.0f', increment=1, from_=1, to=1000, width=32)
+        self.champ_sample.grid(row=8, column=1, columnspan=2)
+        self.champ_sample.delete(0, "end")
+        self.champ_sample.insert(0, "50")
+
     def ajuster_taille(self, x, y):
         """ Méthode permettant d'actualiser les valeurs de taille de l'univers. """
         self.taille_x = x
